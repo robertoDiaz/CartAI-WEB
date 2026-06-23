@@ -5,5 +5,36 @@
     "pricing": "Precios",
     "login": "Iniciar Sesión",
     "register": "Registrarse Ahora"
+  },
+  "hero": {
+    "titleMain": "Comercio Inteligente, ",
+    "titleHighlight": "Potenciado por IA",
+    "description": "Optimiza tu tienda, personaliza los viajes de los clientes y automatiza las operaciones con el poder de Cart•AI.",
+    "startFree": "Empieza Gratis",
+    "watchDemo": "Ver una Demo de 1 Minuto"
+  },
+  "features": {
+    "sectionTitle": "Destacados de Funciones",
+    "ai": {
+      "title": "Recomendaciones por IA",
+      "description": "Aumenta el valor del carrito con coincidencias de productos perfectas."
+    },
+    "inventory": {
+      "title": "Inventario Predictivo",
+      "description": "Nunca te quedes sin superventas, minimiza el exceso de stock."
+    },
+    "insights": {
+      "title": "Información Personalizada",
+      "description": "Dirígete a los usuarios en función de su comportamiento, no solo de su demografía."
+    }
+  },
+  "footer": {
+    "description": "El primer motor de comercio electrónico potenciado por IA y arquitectura hexagonal. Escalabilidad empresarial para tu negocio.",
+    "product": "Producto",
+    "apiDocs": "Documentación API",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "rights": "Todos los derechos reservados."
   }
 }

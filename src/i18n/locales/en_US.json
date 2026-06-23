@@ -8,6 +8,33 @@
   },
   "hero": {
     "titleMain": "Intelligent Commerce,",
-    "titleHighlight": "Powered by AI"
+    "titleHighlight": "Powered by AI",
+    "description": "Optimize your store, personalize customer journeys, and automate operations with the power of Cart•AI.",
+    "startFree": "Start for Free",
+    "watchDemo": "Watch a 1-Minute Demo"
+  },
+  "features": {
+    "sectionTitle": "Feature Highlights",
+    "ai": {
+      "title": "AI Recommendations",
+      "description": "Increase cart value with perfect product matches."
+    },
+    "inventory": {
+      "title": "Predictive Inventory",
+      "description": "Never run out of bestsellers, minimize overstocking."
+    },
+    "insights": {
+      "title": "Personalized Insights",
+      "description": "Target users based on behavior, not just demographics."
+    }
+  },
+  "footer": {
+    "description": "The first e-commerce engine powered by AI and hexagonal architecture. Enterprise scalability for your business.",
+    "product": "Product",
+    "apiDocs": "API Documentation",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "rights": "All rights reserved."
   }
 }

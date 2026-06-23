@@ -1,3 +1,4 @@
+import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 
 export function LandingPage() {
@@ -9,6 +10,7 @@ export function LandingPage() {
           Destacados de Funciones
         </h2>
       </section>
+      <Footer />
     </div>
   );
 }
