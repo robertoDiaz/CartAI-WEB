@@ -1,0 +1,13 @@
+{
+  "navbar": {
+    "howItWorks": "How it Works",
+    "features": "Features",
+    "pricing": "Pricing",
+    "login": "Login",
+    "register": "Sign Up Now"
+  },
+  "hero": {
+    "titleMain": "Intelligent Commerce,",
+    "titleHighlight": "Powered by AI"
+  }
+}
