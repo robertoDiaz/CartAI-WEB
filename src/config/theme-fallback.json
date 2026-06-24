@@ -1,0 +1,10 @@
+{
+  "--color-brand-bg": "#f8f9fa",
+  "--color-brand-primary": "#0a192f",
+  "--color-brand-primary-hover": "#112240",
+  "--color-brand-accent": "#e85d04",
+  "--color-brand-accent-hover": "#cc5200",
+  "--color-text-main": "#0a192f",
+  "--color-text-secondary": "#475569",
+  "--color-border-light": "#f1f5f9"
+}
