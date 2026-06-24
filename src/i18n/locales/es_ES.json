@@ -36,5 +36,16 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "rights": "Todos los derechos reservados."
+  },
+  "catalog": {
+    "title": "Catálogo de Productos",
+    "addToCart": "Añadir al Carrito",
+    "outOfStock": "Agotado",
+    "inStock": "En stock: {{count}}",
+    "cartTitle": "Tu Carrito",
+    "emptyCart": "El carrito está vacío.",
+    "clearCart": "Vaciar Carrito",
+    "total": "Total",
+    "itemsCount": "artículos"
   }
 }

@@ -36,5 +36,16 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "rights": "All rights reserved."
+  },
+  "catalog": {
+    "title": "Product Catalog",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "inStock": "In stock: {{count}}",
+    "cartTitle": "Your Cart",
+    "emptyCart": "The cart is empty.",
+    "clearCart": "Clear Cart",
+    "total": "Total",
+    "itemsCount": "items"
   }
 }
