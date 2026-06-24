@@ -3,14 +3,15 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, TrendingUp, Sparkles, ShoppingCart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export function HeroSection() {
   const { t } = useTranslation();
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16 lg:py-24 flex flex-col lg:flex-row items-center gap-12">
+    <section className="max-w-7xl mx-auto px-6 py-16 lg:py-24 flex flex-col lg:flex-row items-center gap-16">
       <div className="flex-1 space-y-8">
         <h1 className="text-5xl lg:text-6xl font-extrabold text-[#0a192f] leading-tight">
           {t("hero.titleMain")} <br />
@@ -20,21 +21,109 @@ export function HeroSection() {
           {t("hero.description")}
         </p>
         <div className="flex items-center gap-6">
-          <button className="bg-[#e85d04] text-white px-6 py-3.5 rounded-lg font-bold shadow-lg hover:bg-[#cc5200] transition-all flex items-center gap-2">
+          <Link
+            to="/catalog"
+            className="bg-[#e85d04] text-white px-6 py-3.5 rounded-lg font-bold shadow-lg hover:bg-[#cc5200] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2"
+          >
             {t("hero.startFree")} <ArrowUpRight className="w-5 h-5" />
-          </button>
-          <button className="text-[#0a192f] font-semibold underline decoration-2 underline-offset-4 hover:text-[#e85d04] transition-colors">
+          </Link>
+          <Link
+            to="/catalog"
+            className="text-[#0a192f] font-semibold underline decoration-2 underline-offset-4 hover:text-[#e85d04] transition-colors"
+          >
             {t("hero.watchDemo")}
-          </button>
+          </Link>
         </div>
       </div>
 
-      <div className="flex-1 w-full relative">
+      <div className="flex-1 w-full relative lg:mt-0 mt-12">
         <div className="absolute inset-0 bg-gradient-to-tr from-[#e85d04] to-blue-400 rounded-2xl blur-3xl opacity-20"></div>
-        <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-100 h-80 lg:h-[450px] flex items-center justify-center">
-          <span className="text-slate-400 font-medium">
-            [Mockup Dashboard Cart•AI]
-          </span>
+        
+        {/* Contenedor del Dashboard simulado */}
+        <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 overflow-hidden h-[420px] flex flex-col justify-between">
+          
+          {/* Header de la ventana del navegador */}
+          <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+            <div className="flex gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-red-400"></span>
+              <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+              <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+            </div>
+            <span className="text-xs font-semibold text-slate-400 tracking-wider">
+              CART•AI LIVE ANALYTICS
+            </span>
+            <span className="w-4"></span>
+          </div>
+
+          {/* Gráfico y Métricas */}
+          <div className="flex-grow flex flex-col justify-between">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Ventas por IA (Hoy)</p>
+                <h3 className="text-3xl font-extrabold text-[#0a192f] mt-1">$12,845.50</h3>
+              </div>
+              <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
+                <TrendingUp className="w-3.5 h-3.5" /> +18.2%
+              </span>
+            </div>
+
+            {/* Gráfico Lineal SVG ondulado */}
+            <div className="h-40 w-full mt-4 relative">
+              <svg className="w-full h-full overflow-visible" viewBox="0 0 400 150">
+                <defs>
+                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#e85d04" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#e85d04" stopOpacity="0.0" />
+                  </linearGradient>
+                </defs>
+                {/* Línea del gráfico */}
+                <path
+                  d="M 0 120 Q 50 60 100 90 T 200 40 T 300 110 T 400 30"
+                  fill="none"
+                  stroke="#e85d04"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+                {/* Relleno bajo la línea */}
+                <path
+                  d="M 0 120 Q 50 60 100 90 T 200 40 T 300 110 T 400 30 L 400 150 L 0 150 Z"
+                  fill="url(#chartGradient)"
+                />
+                {/* Punto destacado */}
+                <circle cx="200" cy="40" r="6" fill="#0a192f" stroke="#e85d04" strokeWidth="3" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Tarjeta Flotante 1: Producto */}
+          <div className="absolute top-20 -right-4 bg-white p-4 rounded-xl border border-slate-100 shadow-xl flex items-center gap-3 transition-transform hover:-translate-y-1.5 duration-300 cursor-pointer max-w-[220px]">
+            <div className="p-2 bg-[#e85d04]/10 text-[#e85d04] rounded-lg">
+              <ShoppingCart className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-xs font-bold text-[#0a192f]">Smart Terminal</h4>
+              <p className="text-xs text-slate-500 mt-0.5">$299.99</p>
+              <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded mt-1 inline-block">
+                Sales +25%
+              </span>
+            </div>
+          </div>
+
+          {/* Tarjeta Flotante 2: Recomendación IA */}
+          <div className="absolute bottom-6 -left-6 bg-[#0a192f] text-white p-4 rounded-xl shadow-2xl flex items-center gap-3 transition-transform hover:-translate-y-1.5 duration-300 cursor-pointer max-w-[280px]">
+            <div className="p-2.5 bg-[#e85d04] rounded-lg text-white">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#e85d04]">Sugerido por IA</span>
+              </div>
+              <p className="text-xs text-slate-200 mt-1 font-medium leading-tight">
+                Venta cruzada exitosa: + $45.00
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

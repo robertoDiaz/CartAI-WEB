@@ -3,61 +3,43 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
+import { useState, useEffect } from "react";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCartStore, type Product } from "../cart/cartStore";
-
-const MOCK_PRODUCTS: Product[] = [
-  {
-    id: "prod-1",
-    name: "Cart•AI Smart Terminal",
-    description:
-      "Terminal inteligente de punto de venta con recomendaciones por IA en tiempo real y pantalla táctil HD.",
-    price: 299.99,
-    stock: 5,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-2",
-    name: "Predictive Stock Tracker",
-    description:
-      "Sensor IoT ultrapreciso para estanterías que predice la rotura de stock y automatiza pedidos.",
-    price: 149.5,
-    stock: 3,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-3",
-    name: "Automated Cart Tag",
-    description:
-      "Etiqueta digital inteligente de tinta electrónica para carritos de compra que sincroniza precios dinámicos.",
-    price: 19.99,
-    stock: 15,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-4",
-    name: "Hexagonal Hub Gateway",
-    description:
-      "Servidor de comunicación local con arquitectura hexagonal redundante y encriptación de grado militar.",
-    price: 599.0,
-    stock: 2,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-5",
-    name: "Hexagonal Hub Gateway 2",
-    description:
-      "Servidor de comunicación remoto con arquitectura hexagonal redundante y encriptación de grado militar.",
-    price: 1000.0,
-    stock: 0,
-    imageFileIds: [],
-  },
-];
+import { productService } from "../../services/productService";
 
 export function CatalogPage() {
   const { t } = useTranslation();
   const { items, totalPrice, addItem, removeItem, clearCart } = useCartStore();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    productService.getProducts().then((data) => {
+      if (active) {
+        setProducts(data);
+        setLoading(false);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto px-6 py-24 flex justify-center items-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#e85d04] border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-slate-500 font-medium text-sm animate-pulse">
+            {t("catalog.loading", "Cargando catálogo...")}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
@@ -69,7 +51,7 @@ export function CatalogPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {MOCK_PRODUCTS.map((product) => {
+            {products.map((product) => {
               const isOutOfStock = product.stock <= 0;
 
               return (
