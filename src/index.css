@@ -1,1 +1,112 @@
 @import "tailwindcss";
+
+
+/* Layout Utilities */
+@utility layout-container {
+  @apply min-h-screen bg-[var(--color-brand-bg)] font-sans flex flex-col;
+}
+
+@utility main-content {
+  @apply flex-grow;
+}
+
+@utility section-wrapper {
+  @apply max-w-7xl mx-auto px-6 py-16 lg:py-24;
+}
+
+/* Navigation Utilities */
+@utility navbar-container {
+  @apply w-full px-6 py-4 flex justify-between items-center bg-[var(--color-brand-bg)] border-b border-[var(--color-border-light)];
+}
+
+@utility navbar-link {
+  @apply hover:text-[var(--color-brand-accent)] transition-colors text-[var(--color-brand-primary)] font-semibold;
+}
+
+@utility navbar-link-active {
+  @apply hover:text-[var(--color-brand-accent)] transition-colors font-bold text-[var(--color-brand-accent)];
+}
+
+/* Button Utilities */
+@utility btn-accent {
+  @apply bg-[var(--color-brand-accent)] text-white px-5 py-2.5 rounded-lg font-bold shadow-md hover:bg-[var(--color-brand-accent-hover)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 active:scale-98 cursor-pointer;
+}
+
+@utility btn-primary-dark {
+  @apply bg-[var(--color-brand-primary)] text-white px-5 py-2.5 rounded-lg font-bold shadow-md hover:bg-[var(--color-brand-primary-hover)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 active:scale-98 cursor-pointer;
+}
+
+@utility btn-outline {
+  @apply border border-slate-200 text-[var(--color-brand-primary)] px-4 py-2 rounded-lg font-semibold hover:border-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer;
+}
+
+@utility btn-text {
+  @apply text-[var(--color-brand-primary)] font-semibold flex items-center gap-2 hover:text-[var(--color-brand-accent)] transition-colors cursor-pointer bg-transparent border-none p-0;
+}
+
+/* Footer Utilities */
+@utility footer-container {
+  @apply bg-[var(--color-brand-primary)] text-slate-300 py-12 border-t border-[var(--color-brand-primary-hover)];
+}
+
+@utility footer-logo-wrapper {
+  @apply bg-[var(--color-brand-bg)] px-4 py-2 rounded-xl inline-block mb-6 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer;
+}
+
+@utility footer-heading {
+  @apply text-white font-bold mb-4;
+}
+
+@utility footer-link {
+  @apply hover:text-[var(--color-brand-accent)] transition-colors text-sm text-slate-300;
+}
+
+/* Hero Section Utilities */
+@utility hero-title {
+  @apply text-5xl lg:text-6xl font-extrabold text-[var(--color-brand-primary)] leading-tight;
+}
+
+@utility hero-subtitle {
+  @apply text-xl text-slate-600 max-w-lg;
+}
+
+@utility dashboard-mockup {
+  @apply relative bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 overflow-hidden h-[420px] flex flex-col justify-between;
+}
+
+@utility dashboard-header {
+  @apply flex items-center justify-between border-b border-slate-100 pb-4 mb-4;
+}
+
+@utility floating-card-featured {
+  @apply absolute top-20 -right-4 bg-white p-4 rounded-xl border border-slate-100 shadow-xl flex items-center gap-3 transition-transform hover:-translate-y-1.5 duration-300 cursor-pointer max-w-[220px];
+}
+
+@utility floating-card-suggestion {
+  @apply absolute bottom-6 -left-6 bg-[var(--color-brand-primary)] text-white p-4 rounded-xl shadow-2xl flex items-center gap-3 transition-transform hover:-translate-y-1.5 duration-300 cursor-pointer max-w-[280px];
+}
+
+/* Catalog Utilities */
+@utility catalog-title {
+  @apply text-3xl font-extrabold text-[var(--color-brand-primary)] mb-8 font-sans border-b pb-4 border-slate-200;
+}
+
+@utility product-card {
+  @apply bg-white rounded-xl border border-slate-100 p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between;
+}
+
+@utility product-badge-instock {
+  @apply text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600;
+}
+
+@utility product-badge-outofstock {
+  @apply text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-600;
+}
+
+@utility cart-sidebar {
+  @apply bg-white rounded-xl border border-slate-100 p-6 shadow-sm sticky top-6;
+}
+
+@utility cart-item-row {
+  @apply flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100;
+}

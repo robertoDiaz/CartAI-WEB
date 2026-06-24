@@ -9,9 +9,9 @@ import { Footer } from "./Footer";
 
 export function MainLayout() {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] font-sans flex flex-col">
+    <div className="layout-container">
       <Navbar />
-      <main className="flex-grow">
+      <main className="main-content">
         <Outlet />
       </main>
       <Footer />

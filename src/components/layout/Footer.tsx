@@ -3,8 +3,8 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import LogoCartAI from "../../assets/logo-h.svg?react";
 
 export function Footer() {
@@ -14,8 +14,8 @@ export function Footer() {
     <footer className="bg-[#0a192f] text-slate-300 py-12 border-t border-[#112240]">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="col-span-1 md:col-span-2">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="bg-[#f8f9fa] px-4 py-2 rounded-xl inline-block mb-6 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             aria-label="Go to Home"
           >
