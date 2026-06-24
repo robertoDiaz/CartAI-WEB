@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import LogoCartAI from "../../assets/logo-h.svg?react";
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t: translate } = useTranslation();
 
   return (
     <footer className="bg-[#0a192f] text-slate-300 py-12 border-t border-[#112240]">
@@ -21,46 +21,46 @@ export function Footer() {
           >
             <LogoCartAI className="h-8 w-auto" />
           </Link>
-          <p className="text-sm max-w-sm">{t("footer.description")}</p>
+          <p className="text-sm max-w-sm">{translate("footer.description")}</p>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-4">{t("footer.product")}</h4>
+          <h4 className="text-white font-bold mb-4">{translate("footer.product")}</h4>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#features" className="hover:text-[#e85d04] transition">
-                {t("navbar.features")}
+                {translate("navbar.features")}
               </a>
             </li>
             <li>
               <a href="#pricing" className="hover:text-[#e85d04] transition">
-                {t("navbar.pricing")}
+                {translate("navbar.pricing")}
               </a>
             </li>
             <li>
               <a href="#api" className="hover:text-[#e85d04] transition">
-                {t("footer.apiDocs")}
+                {translate("footer.apiDocs")}
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-4">{t("footer.legal")}</h4>
+          <h4 className="text-white font-bold mb-4">{translate("footer.legal")}</h4>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#privacy" className="hover:text-[#e85d04] transition">
-                {t("footer.privacy")}
+                {translate("footer.privacy")}
               </a>
             </li>
             <li>
               <a href="#terms" className="hover:text-[#e85d04] transition">
-                {t("footer.terms")}
+                {translate("footer.terms")}
               </a>
             </li>
           </ul>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 text-sm text-center">
-        © {new Date().getFullYear()} Cart•AI. {t("footer.rights")}
+        © {new Date().getFullYear()} Cart•AI. {translate("footer.rights")}
       </div>
     </footer>
   );
