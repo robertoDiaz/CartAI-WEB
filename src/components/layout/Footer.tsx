@@ -4,7 +4,7 @@
  */
 
 import { useTranslation } from "react-i18next";
-import LogoCartAI from "../../../assets/logo-h.svg?react";
+import LogoCartAI from "../../assets/logo-h.svg?react";
 
 export function Footer() {
   const { t } = useTranslation();

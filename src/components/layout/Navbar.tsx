@@ -5,8 +5,8 @@
 
 import { LogIn, ShoppingCart } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import LogoCartAI from "../../../assets/logo-h.svg?react";
-import { useCartStore } from "../../cart/cartStore";
+import LogoCartAI from "../../assets/logo-h.svg?react";
+import { useCartStore } from "../../features/cart/cartStore";
 
 export function Navbar() {
   const { t } = useTranslation();
