@@ -22,15 +22,21 @@ export interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  totalPrice: number;
   addItem: (product: Product, quantity?: number) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
 }
 
+const calculateItemsTotal = (items: CartItem[]): number => {
+  return items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+};
+
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       items: [],
+      totalPrice: 0,
 
       addItem: (product, quantity = 1) =>
         set((state) => {
@@ -38,20 +44,20 @@ export const useCartStore = create<CartState>()(
             (item) => item.product.id === product.id
           );
 
+          let newItems = [...state.items];
           if (existingIndex > -1) {
-            const newItems = [...state.items];
             const currentQty = newItems[existingIndex].quantity;
-            // Limit quantity to available stock
             const targetQty = currentQty + quantity;
             newItems[existingIndex].quantity =
               targetQty > product.stock ? product.stock : targetQty;
-            return { items: newItems };
+          } else {
+            const initialQty = quantity > product.stock ? product.stock : quantity;
+            newItems = [...state.items, { product, quantity: initialQty }];
           }
 
-          // Limit initial quantity to available stock
-          const initialQty = quantity > product.stock ? product.stock : quantity;
           return {
-            items: [...state.items, { product, quantity: initialQty }],
+            items: newItems,
+            totalPrice: calculateItemsTotal(newItems),
           };
         }),
 
@@ -60,22 +66,24 @@ export const useCartStore = create<CartState>()(
           const existing = state.items.find((item) => item.product.id === productId);
           if (!existing) return state;
 
+          let newItems;
           if (existing.quantity > 1) {
-            return {
-              items: state.items.map((item) =>
-                item.product.id === productId
-                  ? { ...item, quantity: item.quantity - 1 }
-                  : item
-              ),
-            };
+            newItems = state.items.map((item) =>
+              item.product.id === productId
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            );
+          } else {
+            newItems = state.items.filter((item) => item.product.id !== productId);
           }
 
           return {
-            items: state.items.filter((item) => item.product.id !== productId),
+            items: newItems,
+            totalPrice: calculateItemsTotal(newItems),
           };
         }),
 
-      clearCart: () => set({ items: [] }),
+      clearCart: () => set({ items: [], totalPrice: 0 }),
     }),
     {
       name: "cart-storage",

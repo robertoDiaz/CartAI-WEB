@@ -6,6 +6,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { LandingPage } from "../features/landing/LandingPage";
+import { CatalogPage } from "../features/catalog/CatalogPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "catalog",
-        element: <div>Catalog Placeholder</div>,
+        element: <CatalogPage />,
       },
     ],
   },
