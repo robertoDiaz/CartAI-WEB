@@ -70,12 +70,12 @@ export function CatalogPage() {
                               count: product.stock,
                             })}
                       </span>
-                      <span className="text-xl font-bold text-[var(--color-brand-primary)]">
+                      <span className="text-xl font-bold text-(--color-brand-primary)">
                         ${product.price.toFixed(2)}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[var(--color-brand-primary)] mb-2">
+                    <h3 className="text-lg font-bold text-(--color-brand-primary) mb-2">
                       {product.name}
                     </h3>
                     <p className="text-slate-600 text-sm mb-6 leading-relaxed">
@@ -105,8 +105,8 @@ export function CatalogPage() {
         <div className="lg:w-1/3">
           <div className="cart-sidebar">
             <div className="flex justify-between items-center mb-6 border-b pb-4 border-slate-200">
-              <h2 className="text-xl font-bold text-[var(--color-brand-primary)] flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-[var(--color-brand-accent)]" />
+              <h2 className="text-xl font-bold text-(--color-brand-primary) flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-(--color-brand-accent)" />
                 {translate("catalog.cartTitle")}
               </h2>
               {items.length > 0 && (
@@ -132,7 +132,7 @@ export function CatalogPage() {
                   {items.map((item) => (
                     <div key={item.product.id} className="cart-item-row">
                       <div className="flex-grow pr-3">
-                        <h4 className="text-sm font-semibold text-[var(--color-brand-primary)] line-clamp-1">
+                        <h4 className="text-sm font-semibold text-(--color-brand-primary) line-clamp-1">
                           {item.product.name}
                         </h4>
                         <span className="text-xs text-slate-500">
@@ -143,11 +143,11 @@ export function CatalogPage() {
                       <div className="flex items-center gap-2 bg-white rounded-md border border-slate-200 px-1 py-0.5">
                         <button
                           onClick={() => removeItem(item.product.id)}
-                          className="p-1 hover:text-[var(--color-brand-accent)] text-slate-500 transition-colors bg-transparent border-none cursor-pointer"
+                          className="p-1 hover:text-(--color-brand-accent) text-slate-500 transition-colors bg-transparent border-none cursor-pointer"
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
-                        <span className="text-sm font-bold text-[var(--color-brand-primary)] px-1 min-w-4 text-center">
+                        <span className="text-sm font-bold text-(--color-brand-primary) px-1 min-w-4 text-center">
                           {item.quantity}
                         </span>
                         <button
@@ -156,7 +156,7 @@ export function CatalogPage() {
                           className={`p-1 transition-colors bg-transparent border-none cursor-pointer ${
                             item.quantity >= item.product.stock
                               ? "text-slate-300 cursor-not-allowed"
-                              : "hover:text-[var(--color-brand-accent)] text-slate-500"
+                              : "hover:text-(--color-brand-accent) text-slate-500"
                           }`}
                         >
                           <Plus className="w-3.5 h-3.5" />
@@ -168,10 +168,10 @@ export function CatalogPage() {
 
                 <div className="border-t pt-4 border-slate-200 mt-6 space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-semibold text-[var(--color-brand-primary)]">
+                    <span className="text-sm font-semibold text-(--color-brand-primary)">
                       {translate("catalog.total")}
                     </span>
-                    <span className="text-2xl font-bold text-[var(--color-brand-accent)]">
+                    <span className="text-2xl font-bold text-(--color-brand-accent)">
                       ${totalPrice.toFixed(2)}
                     </span>
                   </div>

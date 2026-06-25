@@ -46,15 +46,15 @@ export function RegisterPage() {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
         
         {/* Aesthetic background element */}
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-[var(--color-brand-primary)] to-blue-300 rounded-full blur-3xl opacity-10 pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-linear-to-tr from-(--color-brand-primary) to-blue-300 rounded-full blur-3xl opacity-10 pointer-events-none"></div>
 
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-[var(--color-brand-primary)] tracking-tight">
+          <h2 className="mt-2 text-center text-3xl font-extrabold text-(--color-brand-primary) tracking-tight">
             {translate("auth.registerTitle")}
           </h2>
           <p className="mt-2 text-center text-sm text-slate-500">
             {translate("auth.registerAlready")}
-            <Link to="/login" className="font-medium text-[var(--color-brand-accent)] hover:underline transition-all">
+            <Link to="/login" className="font-medium text-(--color-brand-accent) hover:underline transition-all">
               {translate("auth.loginLink")}
             </Link>
           </p>
@@ -83,7 +83,7 @@ export function RegisterPage() {
                   type="text"
                   autoComplete="name"
                   required
-                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-accent)] focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
+                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.namePlaceholder")}
                   value={name}
                   onChange={(e) => {
@@ -108,7 +108,7 @@ export function RegisterPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-accent)] focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
+                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.emailPlaceholder")}
                   value={email}
                   onChange={(e) => {
@@ -133,7 +133,7 @@ export function RegisterPage() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-accent)] focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
+                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.passwordPlaceholder")}
                   value={password}
                   onChange={(e) => {
@@ -149,7 +149,7 @@ export function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[var(--color-brand-accent)] hover:bg-[var(--color-brand-accent-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-accent)] disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-(--color-brand-accent) hover:bg-(--color-brand-accent-hover) focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand-accent) disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 {isLoading ? (

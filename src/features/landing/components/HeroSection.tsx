@@ -33,7 +33,7 @@ export function HeroSection() {
       <div className="flex-1 space-y-8">
         <h1 className="hero-title">
           {translate("hero.titleMain")} <br />
-          <span className="text-[var(--color-brand-accent)]">
+          <span className="text-(--color-brand-accent)">
             {translate("hero.titleHighlight")}
           </span>
         </h1>
@@ -52,7 +52,7 @@ export function HeroSection() {
       </div>
 
       <div className="flex-1 w-full relative lg:mt-0 mt-12">
-        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-brand-accent)] to-blue-400 rounded-2xl blur-3xl opacity-20"></div>
+        <div className="absolute inset-0 bg-linear-to-tr from-(--color-brand-accent) to-blue-400 rounded-2xl blur-3xl opacity-20"></div>
 
         {/* Contenedor del Dashboard simulado */}
         <div className="dashboard-mockup">
@@ -92,7 +92,7 @@ export function HeroSection() {
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     Ventas por IA (Hoy)
                   </p>
-                  <h3 className="text-3xl font-extrabold text-[var(--color-brand-primary)] mt-1">
+                  <h3 className="text-3xl font-extrabold text-(--color-brand-primary) mt-1">
                     $
                     {analytics.todaySales.toLocaleString("en-US", {
                       minimumFractionDigits: 2,
@@ -161,11 +161,11 @@ export function HeroSection() {
           {/* Tarjeta Flotante 1: Producto */}
           {!loading && analytics && (
             <div className="floating-card-featured">
-              <div className="p-2 bg-[var(--color-brand-accent)]/10 text-[var(--color-brand-accent)] rounded-lg">
+              <div className="p-2 bg-(--color-brand-accent)/10 text-(--color-brand-accent) rounded-lg">
                 <ShoppingCart className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[var(--color-brand-primary)]">
+                <h4 className="text-xs font-bold text-(--color-brand-primary)">
                   {analytics.featuredProduct.name}
                 </h4>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -181,12 +181,12 @@ export function HeroSection() {
           {/* Tarjeta Flotante 2: Recomendación IA */}
           {!loading && analytics && (
             <div className="floating-card-suggestion">
-              <div className="p-2.5 bg-[var(--color-brand-accent)] rounded-lg text-white">
+              <div className="p-2.5 bg-(--color-brand-accent) rounded-lg text-white">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-brand-accent)]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-(--color-brand-accent)">
                     Sugerido por IA
                   </span>
                 </div>

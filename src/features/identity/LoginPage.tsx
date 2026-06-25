@@ -3,18 +3,19 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { LogIn, Mail, Lock, ArrowRight, AlertCircle } from "lucide-react";
+import { AlertCircle, ArrowRight, Lock, LogIn, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useIdentityStore } from "./identityStore";
 
 export function LoginPage() {
   const { t: translate } = useTranslation();
   const navigate = useNavigate();
-  const { login, isLoading, error, isAuthenticated, clearError } = useIdentityStore();
-  
+  const { login, isLoading, error, isAuthenticated, clearError } =
+    useIdentityStore();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,22 +44,24 @@ export function LoginPage() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
-        
         {/* Aesthetic background element */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[var(--color-brand-accent)] to-orange-200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-linear-to-br from-(--color-brand-accent)] to-orange-200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
 
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-[var(--color-brand-primary)] tracking-tight">
+          <h2 className="mt-2 text-center text-3xl font-extrabold text-(--color-brand-primary)] tracking-tight">
             {translate("auth.loginTitle")}
           </h2>
           <p className="mt-2 text-center text-sm text-slate-500">
             {translate("auth.loginOr")}
-            <Link to="/register" className="font-medium text-[var(--color-brand-accent)] hover:underline transition-all">
+            <Link
+              to="/register"
+              className="font-medium text-(--color-brand-accent)] hover:underline transition-all"
+            >
               {translate("auth.createAccountLink")}
             </Link>
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6 relative z-10" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
@@ -69,7 +72,10 @@ export function LoginPage() {
 
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
-              <label htmlFor="email-address" className="block text-sm font-medium text-slate-700 mb-1">
+              <label
+                htmlFor="email-address"
+                className="block text-sm font-medium text-slate-700 mb-1"
+              >
                 {translate("auth.emailLabel")}
               </label>
               <div className="relative">
@@ -82,7 +88,7 @@ export function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-accent)] focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
+                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.emailPlaceholder")}
                   value={email}
                   onChange={(e) => {
@@ -92,9 +98,12 @@ export function LoginPage() {
                 />
               </div>
             </div>
-            
+
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-slate-700 mb-1"
+              >
                 {translate("auth.passwordLabel")}
               </label>
               <div className="relative">
@@ -107,7 +116,7 @@ export function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-accent)] focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
+                  className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.passwordPlaceholder")}
                   value={password}
                   onChange={(e) => {
@@ -123,7 +132,7 @@ export function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-primary)] disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-(--color-brand-primary) hover:bg-(--color-brand-primary-hover) focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand-primary) disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 {isLoading ? (
@@ -132,8 +141,12 @@ export function LoginPage() {
                   <LogIn className="h-5 w-5 text-indigo-200 group-hover:text-white transition-colors" />
                 )}
               </span>
-              {isLoading ? translate("auth.loginLoading") : translate("auth.loginButton")}
-              {!isLoading && <ArrowRight className="ml-2 w-4 h-4 mt-0.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />}
+              {isLoading
+                ? translate("auth.loginLoading")
+                : translate("auth.loginButton")}
+              {!isLoading && (
+                <ArrowRight className="ml-2 w-4 h-4 mt-0.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              )}
             </button>
           </div>
         </form>

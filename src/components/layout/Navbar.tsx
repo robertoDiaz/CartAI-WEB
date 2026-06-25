@@ -42,12 +42,12 @@ export function Navbar() {
       <div className="flex items-center gap-4">
         <Link
           to="/catalog"
-          className="relative p-2 text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)] transition-colors mr-2 flex items-center"
+          className="relative p-2 text-(--color-brand-primary) hover:text-(--color-brand-accent) transition-colors mr-2 flex items-center"
           aria-label="Shopping Cart"
         >
           <ShoppingCart className="w-6 h-6" />
           {totalItems > 0 && (
-            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[var(--color-brand-accent)] rounded-full">
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-(--color-brand-accent) rounded-full">
               {totalItems}
             </span>
           )}
@@ -56,7 +56,7 @@ export function Navbar() {
         {isAuthenticated ? (
           <div className="flex items-center gap-4 ml-2 border-l border-slate-200 pl-4">
             <span className="text-sm font-semibold text-slate-700 hidden sm:block">
-              Hola, <span className="text-[var(--color-brand-primary)]">{user?.name}</span>
+              Hola, <span className="text-(--color-brand-primary)">{user?.name}</span>
             </span>
             <button onClick={() => logout()} className="btn-text text-slate-500 hover:text-red-500">
               <LogOut className="w-5 h-5" />
