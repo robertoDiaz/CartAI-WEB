@@ -67,6 +67,11 @@ This section details the current progress, architectural decisions, and the deve
   - Programmed `themeService.ts` to check runtime protocol safety (preventing CORS failures on `file://` or serverless SSR environments), fetch overrides asynchronously relative to `window.location.origin`, merge both themes, and inject them before React mounts in `main.tsx`.
 * **Semantic Refactoring**: Refactored translation structures to rename the default i18next `t` alias to `translate` for semantic clarity across all components.
 * **Unit Testing (Vitest)**: Configured Vitest, jsdom, and `@testing-library/jest-dom`. Written comprehensive unit test suites for `cartStore.ts` (cart operations, totals, limits) and `themeService.ts` (theme configuration fallbacks and overriding resolution).
+* **Gestión de Perfil y Subida de Avatar**:
+  - Implementado el flujo completo de subida y gestión de foto de perfil (avatar) a través del endpoint `/api/users/avatar`.
+  - Integrada la edición de usuario a través de `PUT /api/users/{id}` vinculada a `UpdateUserRestRequest` y coordinada con la ID devuelta del avatar.
+  - Creada e integrada la vista de `ProfilePage.tsx` con opciones de edición, previsualización local e inicio/cierre de sesión dinámico.
+  - Adaptados los endpoints y maquetación para leer la ruta `/api/storage/files/` para recursos multimedia estáticos.
 
 ---
 
@@ -74,6 +79,6 @@ This section details the current progress, architectural decisions, and the deve
 
 ### Backend Integration
 The next immediate phase is connecting the client app to the live backend services:
-1. **Authentication Flow**: Hook up React registration and login forms with actual server endpoints.
+1. **Verificación de Almacenamiento y Avatar**: Validar en un entorno real la persistencia tras el guardado de avatares vía `/api/storage/files/`.
 2. **Catalog Retrieval**: Replace static mock data inside `productService.ts` with real REST or GraphQL API fetch queries.
 3. **Real-time Analytics**: Wire up dashboard widgets and charts inside `HeroSection.tsx` to read from live backend event streams/data feeds.
