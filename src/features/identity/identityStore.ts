@@ -5,6 +5,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import i18n from "../../i18n/config";
 import type { IdentityState } from "./types";
 import { identityService } from "./identityService";
 
@@ -33,8 +34,7 @@ export const useIdentityStore = create<IdentityState>()(
           });
         } catch (error: any) {
           const message =
-            error.response?.data?.message ||
-            "Error al iniciar sesión. Verifica tus credenciales.";
+            error.response?.data?.message || i18n.t("auth.loginError");
           set({ error: message, isLoading: false, isAuthenticated: false });
           throw error;
         }
@@ -56,7 +56,7 @@ export const useIdentityStore = create<IdentityState>()(
           });
         } catch (error: any) {
           const message =
-            error.response?.data?.message || "Error al registrar la cuenta.";
+            error.response?.data?.message || i18n.t("auth.registerError");
           set({ error: message, isLoading: false, isAuthenticated: false });
           throw error;
         }

@@ -4,8 +4,8 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { themeService } from "./themeService";
-import themeFallback from "../config/theme-fallback.json";
+import { themeService } from "../../services/themeService";
+import themeFallback from "../../config/theme-fallback.json";
 
 describe("themeService", () => {
   let setPropertySpy: any;

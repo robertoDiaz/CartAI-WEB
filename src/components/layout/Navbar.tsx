@@ -4,15 +4,17 @@
  */
 
 import { Link } from "react-router-dom";
-import { LogIn, ShoppingCart } from "lucide-react";
+import { LogIn, ShoppingCart, LogOut } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LogoCartAI from "../../assets/logo-h.svg?react";
 import { useCartStore } from "../../features/cart/cartStore";
+import { useIdentityStore } from "../../features/identity/identityStore";
 
 export function Navbar() {
   const { t: translate } = useTranslation();
   const items = useCartStore((state) => state.items);
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  const { isAuthenticated, user, logout } = useIdentityStore();
 
   return (
     <nav className="navbar-container">
@@ -51,12 +53,25 @@ export function Navbar() {
           )}
         </Link>
 
-        <button className="btn-text">
-          <LogIn className="w-5 h-5" /> {translate("navbar.login")}
-        </button>
-        <button className="btn-accent">
-          {translate("navbar.register")}
-        </button>
+        {isAuthenticated ? (
+          <div className="flex items-center gap-4 ml-2 border-l border-slate-200 pl-4">
+            <span className="text-sm font-semibold text-slate-700 hidden sm:block">
+              Hola, <span className="text-[var(--color-brand-primary)]">{user?.name}</span>
+            </span>
+            <button onClick={() => logout()} className="btn-text text-slate-500 hover:text-red-500">
+              <LogOut className="w-5 h-5" />
+            </button>
+          </div>
+        ) : (
+          <>
+            <Link to="/login" className="btn-text">
+              <LogIn className="w-5 h-5" /> {translate("navbar.login")}
+            </Link>
+            <Link to="/register" className="btn-accent">
+              {translate("navbar.register")}
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

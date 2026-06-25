@@ -48,5 +48,25 @@
     "clearCart": "Clear Cart",
     "total": "Total",
     "itemsCount": "items"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginOr": "Or ",
+    "createAccountLink": "create a new account",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "example@cartai.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "loginButton": "Sign In",
+    "loginLoading": "Signing in...",
+    "registerTitle": "Join Cart•AI",
+    "registerAlready": "Already have an account? ",
+    "loginLink": "Sign in here",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "registerButton": "Sign Up",
+    "registerLoading": "Creating account...",
+    "loginError": "Failed to sign in. Check your credentials.",
+    "registerError": "Failed to register account."
   }
 }

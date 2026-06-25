@@ -48,5 +48,25 @@
     "clearCart": "Vaciar Carrito",
     "total": "Total",
     "itemsCount": "artículos"
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "loginOr": "O ",
+    "createAccountLink": "crea una cuenta nueva",
+    "emailLabel": "Correo Electrónico",
+    "emailPlaceholder": "ejemplo@cartai.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "loginButton": "Iniciar Sesión",
+    "loginLoading": "Iniciando sesión...",
+    "registerTitle": "Únete a Cart•AI",
+    "registerAlready": "¿Ya tienes una cuenta? ",
+    "loginLink": "Inicia sesión aquí",
+    "nameLabel": "Nombre Completo",
+    "namePlaceholder": "Juan Pérez",
+    "registerButton": "Registrarse",
+    "registerLoading": "Creando cuenta...",
+    "loginError": "Error al iniciar sesión. Verifica tus credenciales.",
+    "registerError": "Error al registrar la cuenta."
   }
 }

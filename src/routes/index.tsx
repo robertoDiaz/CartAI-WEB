@@ -7,6 +7,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { LandingPage } from "../features/landing/LandingPage";
 import { CatalogPage } from "../features/catalog/CatalogPage";
+import { LoginPage } from "../features/identity/LoginPage";
+import { RegisterPage } from "../features/identity/RegisterPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
       {
         path: "catalog",
         element: <CatalogPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
       },
     ],
   },
