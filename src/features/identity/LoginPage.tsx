@@ -45,17 +45,17 @@ export function LoginPage() {
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
         {/* Aesthetic background element */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-linear-to-br from-(--color-brand-accent)] to-orange-200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-linear-to-br from-(--color-brand-accent) to-orange-200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
 
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-(--color-brand-primary)] tracking-tight">
+          <h2 className="mt-2 text-center text-3xl font-extrabold text-(--color-brand-primary) tracking-tight">
             {translate("auth.loginTitle")}
           </h2>
           <p className="mt-2 text-center text-sm text-slate-500">
             {translate("auth.loginOr")}
             <Link
               to="/register"
-              className="font-medium text-(--color-brand-accent)] hover:underline transition-all"
+              className="font-medium text-(--color-brand-accent) hover:underline transition-all"
             >
               {translate("auth.createAccountLink")}
             </Link>
