@@ -66,28 +66,14 @@ This section details the current progress, architectural decisions, and the deve
   - Provided support for user-defined overrides in [theme-custom.json](file:///Users/rober/work/CartAI-WEB/public/theme-custom.json).
   - Programmed `themeService.ts` to check runtime protocol safety (preventing CORS failures on `file://` or serverless SSR environments), fetch overrides asynchronously relative to `window.location.origin`, merge both themes, and inject them before React mounts in `main.tsx`.
 * **Semantic Refactoring**: Refactored translation structures to rename the default i18next `t` alias to `translate` for semantic clarity across all components.
+* **Unit Testing (Vitest)**: Configured Vitest, jsdom, and `@testing-library/jest-dom`. Written comprehensive unit test suites for `cartStore.ts` (cart operations, totals, limits) and `themeService.ts` (theme configuration fallbacks and overriding resolution).
 
 ---
 
 ## 2. Immediate Roadmap (Next Step)
 
-### Unit Testing Setup (Vitest)
-The immediate next step is to configure and integrate the unit testing environment:
-1. Install and configure `vitest` and `jsdom` devDependencies.
-2. Initialize global test helpers in `setup.ts` to extend Matchers with `@testing-library/jest-dom`.
-3. Implement test suites for:
-   - `cartStore.ts`: Validate item additions, removals, stock boundaries, and total calculation.
-   - `themeService.ts`: Verify default fallback injection and the dynamic resolution of client overrides.
-
----
-
-## 3. Upcoming Critical Phase: Backend Integration
-
-> [!IMPORTANT]
-> **Tomorrow we integrate Cart•AI with the live production backend.**
-> Mock services will be replaced with real HTTP requests to the backend APIs.
->
-> **Backend priorities:**
-> - Connect the React client with the actual server for the user **Login** and **Registration** flow.
-> - Replace `productService.ts` calls with real REST/GraphQL queries to retrieve live product lists.
-> - Connect the SVG analytics chart and dashboard metrics in `HeroSection.tsx` with live data feeds from the server.
+### Backend Integration
+The next immediate phase is connecting the client app to the live backend services:
+1. **Authentication Flow**: Hook up React registration and login forms with actual server endpoints.
+2. **Catalog Retrieval**: Replace static mock data inside `productService.ts` with real REST or GraphQL API fetch queries.
+3. **Real-time Analytics**: Wire up dashboard widgets and charts inside `HeroSection.tsx` to read from live backend event streams/data feeds.
