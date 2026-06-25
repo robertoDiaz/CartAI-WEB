@@ -6,9 +6,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import type { Product } from "../../domain/product";
-import type { CartItem } from "../../domain/cart";
-
+import type { CartItem, Product } from "../../domain/shopModels";
 
 interface CartState {
   items: CartItem[];
@@ -19,7 +17,10 @@ interface CartState {
 }
 
 const calculateItemsTotal = (items: CartItem[]): number => {
-  return items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  return items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0,
+  );
 };
 
 export const useCartStore = create<CartState>()(
@@ -31,7 +32,7 @@ export const useCartStore = create<CartState>()(
       addItem: (product, quantity = 1) =>
         set((state) => {
           const existingIndex = state.items.findIndex(
-            (item) => item.product.id === product.id
+            (item) => item.product.id === product.id,
           );
 
           let newItems = [...state.items];
@@ -41,7 +42,8 @@ export const useCartStore = create<CartState>()(
             newItems[existingIndex].quantity =
               targetQty > product.stock ? product.stock : targetQty;
           } else {
-            const initialQty = quantity > product.stock ? product.stock : quantity;
+            const initialQty =
+              quantity > product.stock ? product.stock : quantity;
             newItems = [...state.items, { product, quantity: initialQty }];
           }
 
@@ -53,7 +55,9 @@ export const useCartStore = create<CartState>()(
 
       removeItem: (productId) =>
         set((state) => {
-          const existing = state.items.find((item) => item.product.id === productId);
+          const existing = state.items.find(
+            (item) => item.product.id === productId,
+          );
           if (!existing) return state;
 
           let newItems;
@@ -61,10 +65,12 @@ export const useCartStore = create<CartState>()(
             newItems = state.items.map((item) =>
               item.product.id === productId
                 ? { ...item, quantity: item.quantity - 1 }
-                : item
+                : item,
             );
           } else {
-            newItems = state.items.filter((item) => item.product.id !== productId);
+            newItems = state.items.filter(
+              (item) => item.product.id !== productId,
+            );
           }
 
           return {
@@ -77,6 +83,6 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: "cart-storage",
-    }
-  )
+    },
+  ),
 );

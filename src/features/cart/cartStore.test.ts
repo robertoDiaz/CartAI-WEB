@@ -3,9 +3,9 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
+import type { Product } from "../../domain/shopModels";
 import { useCartStore } from "./cartStore";
-import type { Product } from "../../domain/product";
 
 const mockProductA: Product = {
   id: "prod-a",
@@ -63,7 +63,7 @@ describe("useCartStore", () => {
 
   it("should respect product stock limit when adding items", () => {
     const store = useCartStore.getState();
-    
+
     // The stock of mockProductA is 5. We attempt to add 10.
     store.addItem(mockProductA, 10);
 
@@ -74,7 +74,7 @@ describe("useCartStore", () => {
 
   it("should respect product stock limit on incremental additions", () => {
     const store = useCartStore.getState();
-    
+
     store.addItem(mockProductB, 1);
     store.addItem(mockProductB, 2); // 1 + 2 = 3, but stock is 2.
 

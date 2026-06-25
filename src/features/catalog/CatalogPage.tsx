@@ -3,12 +3,12 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { useState, useEffect } from "react";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useCartStore } from "../cart/cartStore";
-import type { Product } from "../../domain/product";
+import type { Product } from "../../domain/shopModels";
 import { productService } from "../../services/productService";
+import { useCartStore } from "../cart/cartStore";
 
 export function CatalogPage() {
   const { t: translate } = useTranslation();
@@ -47,27 +47,28 @@ export function CatalogPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sección del catálogo */}
         <div className="flex-grow lg:w-2/3">
-          <h2 className="catalog-title">
-            {translate("catalog.title")}
-          </h2>
+          <h2 className="catalog-title">{translate("catalog.title")}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {products.map((product) => {
               const isOutOfStock = product.stock <= 0;
 
               return (
-                <div
-                  key={product.id}
-                  className="product-card"
-                >
+                <div key={product.id} className="product-card">
                   <div>
                     <div className="flex justify-between items-start mb-3">
                       <span
-                        className={isOutOfStock ? "product-badge-outofstock" : "product-badge-instock"}
+                        className={
+                          isOutOfStock
+                            ? "product-badge-outofstock"
+                            : "product-badge-instock"
+                        }
                       >
                         {isOutOfStock
                           ? translate("catalog.outOfStock")
-                          : translate("catalog.inStock", { count: product.stock })}
+                          : translate("catalog.inStock", {
+                              count: product.stock,
+                            })}
                       </span>
                       <span className="text-xl font-bold text-[var(--color-brand-primary)]">
                         ${product.price.toFixed(2)}
@@ -129,10 +130,7 @@ export function CatalogPage() {
               <div className="space-y-4">
                 <div className="max-h-96 overflow-y-auto pr-1 space-y-3">
                   {items.map((item) => (
-                    <div
-                      key={item.product.id}
-                      className="cart-item-row"
-                    >
+                    <div key={item.product.id} className="cart-item-row">
                       <div className="flex-grow pr-3">
                         <h4 className="text-sm font-semibold text-[var(--color-brand-primary)] line-clamp-1">
                           {item.product.name}
@@ -177,9 +175,7 @@ export function CatalogPage() {
                       ${totalPrice.toFixed(2)}
                     </span>
                   </div>
-                  <button className="btn-primary-dark w-full">
-                    Checkout
-                  </button>
+                  <button className="btn-primary-dark w-full">Checkout</button>
                 </div>
               </div>
             )}
