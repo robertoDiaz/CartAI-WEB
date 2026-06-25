@@ -29,10 +29,10 @@ export const identityService = {
     return response.data;
   },
 
-  uploadAvatar: async (file: File): Promise<{ avatarFileURL: string }> => {
+  uploadAvatar: async (file: File): Promise<{ avatarFileId: string }> => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await apiClient.post<{ avatarFileURL: string }>(
+    const response = await apiClient.post<{ avatarFileId: string }>(
       "/api/users/avatar",
       formData,
       {

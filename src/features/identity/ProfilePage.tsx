@@ -50,7 +50,7 @@ export function ProfilePage() {
       setAvatarFileId(user.avatarFileId || "");
       if (user.avatarFileId) {
         setPreviewUrl(
-          `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/files/${user.avatarFileId}`,
+          `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`,
         );
       }
     }
@@ -73,17 +73,17 @@ export function ProfilePage() {
 
     try {
       const response = await identityService.uploadAvatar(file);
-      // Store the returned URL in avatarFileId state so it can be passed to the PUT request.
-      setAvatarFileId(response.avatarFileURL);
-      // Use the URL directly for the preview image
-      setPreviewUrl(response.avatarFileURL);
+      setAvatarFileId(response.avatarFileId);
+      setPreviewUrl(
+        `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${response.avatarFileId}`,
+      );
       setSuccessMsg(translate("profile.uploadSuccess"));
     } catch (err: any) {
       setLocalError(translate("profile.uploadError"));
       // Rollback preview
       if (user?.avatarFileId) {
         setPreviewUrl(
-          `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/files/${user.avatarFileId}`,
+          `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`,
         );
       } else {
         setPreviewUrl("");

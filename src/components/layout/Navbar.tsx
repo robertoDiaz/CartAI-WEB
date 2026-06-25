@@ -58,7 +58,7 @@ export function Navbar() {
             <Link to="/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               {user?.avatarFileId ? (
                 <img
-                  src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/files/${user.avatarFileId}`}
+                  src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`}
                   alt={user.name}
                   className="w-8 h-8 rounded-full object-cover border border-slate-300"
                 />
