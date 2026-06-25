@@ -3,7 +3,7 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import type { Product } from "../features/cart/cartStore";
+import type { Product } from "../domain/product";
 
 const MOCK_PRODUCTS: Product[] = [
   {

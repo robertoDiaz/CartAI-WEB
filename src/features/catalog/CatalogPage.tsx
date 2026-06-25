@@ -6,7 +6,8 @@
 import { useState, useEffect } from "react";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useCartStore, type Product } from "../cart/cartStore";
+import { useCartStore } from "../cart/cartStore";
+import type { Product } from "../../domain/product";
 import { productService } from "../../services/productService";
 
 export function CatalogPage() {

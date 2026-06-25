@@ -4,7 +4,8 @@
  */
 
 import { describe, it, expect, beforeEach } from "vitest";
-import { useCartStore, type Product } from "./cartStore";
+import { useCartStore } from "./cartStore";
+import type { Product } from "../../domain/product";
 
 const mockProductA: Product = {
   id: "prod-a",
