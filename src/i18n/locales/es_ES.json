@@ -67,6 +67,23 @@
     "registerButton": "Registrarse",
     "registerLoading": "Creando cuenta...",
     "loginError": "Error al iniciar sesión. Verifica tus credenciales.",
-    "registerError": "Error al registrar la cuenta."
+    "registerError": "Error al registrar la cuenta.",
+    "updateProfileError": "Error al actualizar el perfil."
+  },
+  "profile": {
+    "title": "Perfil de Usuario",
+    "description": "Administra los datos de tu cuenta y personaliza tu avatar.",
+    "nameLabel": "Nombre Completo",
+    "emailLabel": "Correo Electrónico",
+    "avatarLabel": "Foto de Perfil",
+    "avatarSpecs": "Sube una imagen cuadrada de hasta 5MB. Formato JPG o PNG.",
+    "rolesLabel": "Roles asignados",
+    "noRoles": "Ningún rol asignado",
+    "saveButton": "Guardar Cambios",
+    "saving": "Guardando...",
+    "success": "¡Perfil actualizado con éxito!",
+    "logoutButton": "Cerrar Sesión",
+    "uploadSuccess": "Foto de perfil subida correctamente.",
+    "uploadError": "Error al subir el avatar. Por favor intenta de nuevo."
   }
 }

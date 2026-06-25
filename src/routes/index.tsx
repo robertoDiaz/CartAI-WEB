@@ -9,6 +9,7 @@ import { LandingPage } from "../features/landing/LandingPage";
 import { CatalogPage } from "../features/catalog/CatalogPage";
 import { LoginPage } from "../features/identity/LoginPage";
 import { RegisterPage } from "../features/identity/RegisterPage";
+import { ProfilePage } from "../features/identity/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

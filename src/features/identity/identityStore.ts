@@ -24,9 +24,11 @@ export const useIdentityStore = create<IdentityState>()(
           const response = await identityService.login(request);
           set({
             user: {
+              id: response.userId,
               email: response.email,
               name: response.name,
               roles: response.roles || [],
+              avatarFileId: response.avatarFileId,
             },
             token: response.token,
             isAuthenticated: true,
@@ -46,9 +48,11 @@ export const useIdentityStore = create<IdentityState>()(
           const response = await identityService.register(request);
           set({
             user: {
+              id: response.userId,
               email: response.email,
               name: response.name,
               roles: response.roles || [],
+              avatarFileId: response.avatarFileId,
             },
             token: response.token,
             isAuthenticated: true,
@@ -58,6 +62,28 @@ export const useIdentityStore = create<IdentityState>()(
           const message =
             error.response?.data?.message || i18n.t("auth.registerError");
           set({ error: message, isLoading: false, isAuthenticated: false });
+          throw error;
+        }
+      },
+
+      updateProfile: async (request) => {
+        set({ isLoading: true, error: null });
+        try {
+          const updatedUser = await identityService.updateUser(request.id, request);
+          set({
+            user: {
+              id: updatedUser.id,
+              email: updatedUser.email,
+              name: updatedUser.name,
+              roles: updatedUser.roles || [],
+              avatarFileId: updatedUser.avatarFileId,
+            },
+            isLoading: false,
+          });
+        } catch (error: any) {
+          const message =
+            error.response?.data?.message || i18n.t("auth.updateProfileError");
+          set({ error: message, isLoading: false });
           throw error;
         }
       },

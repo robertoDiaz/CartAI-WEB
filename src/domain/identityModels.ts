@@ -4,16 +4,20 @@
  */
 
 export interface User {
+  id: string;
   email: string;
   name: string;
   roles: string[];
+  avatarFileId?: string;
 }
 
 export interface AuthRestResponse {
+  userId: string;
   token: string;
   email: string;
   name: string;
   roles: string[];
+  avatarFileId?: string;
 }
 
 export interface LoginRestRequest {
@@ -27,3 +31,12 @@ export interface RegisterRestRequest {
   password?: string;
   avatarFileId?: string;
 }
+
+export interface UpdateUserRestRequest {
+  id: string;
+  name: string;
+  email: string;
+  roles: string[];
+  avatarFileId?: string;
+}
+

@@ -55,9 +55,22 @@ export function Navbar() {
 
         {isAuthenticated ? (
           <div className="flex items-center gap-4 ml-2 border-l border-slate-200 pl-4">
-            <span className="text-sm font-semibold text-slate-700 hidden sm:block">
-              Hola, <span className="text-(--color-brand-primary)">{user?.name}</span>
-            </span>
+            <Link to="/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              {user?.avatarFileId ? (
+                <img
+                  src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/files/${user.avatarFileId}`}
+                  alt={user.name}
+                  className="w-8 h-8 rounded-full object-cover border border-slate-300"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-500 font-bold text-sm uppercase">
+                  {user?.name.charAt(0)}
+                </div>
+              )}
+              <span className="text-sm font-semibold text-slate-700 hidden sm:block">
+                Hola, <span className="text-(--color-brand-primary)">{user?.name}</span>
+              </span>
+            </Link>
             <button onClick={() => logout()} className="btn-text text-slate-500 hover:text-red-500">
               <LogOut className="w-5 h-5" />
             </button>

@@ -7,6 +7,8 @@ import type {
   AuthRestResponse,
   LoginRestRequest,
   RegisterRestRequest,
+  UpdateUserRestRequest,
+  User,
 } from "../../domain/identityModels";
 import { apiClient } from "../../services/apiClient";
 
@@ -24,6 +26,29 @@ export const identityService = {
       "/api/auth/register",
       request,
     );
+    return response.data;
+  },
+
+  uploadAvatar: async (file: File): Promise<{ avatarFileURL: string }> => {
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await apiClient.post<{ avatarFileURL: string }>(
+      "/api/users/avatar",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
+    return response.data;
+  },
+
+  updateUser: async (
+    id: string,
+    request: UpdateUserRestRequest,
+  ): Promise<User> => {
+    const response = await apiClient.put<User>(`/api/users/${id}`, request);
     return response.data;
   },
 };

@@ -5,7 +5,8 @@
 
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -32,7 +33,7 @@ apiClient.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // We can also add a response interceptor here later for global 401 handling
@@ -44,5 +45,5 @@ apiClient.interceptors.response.use(
       console.warn("Unauthorized API call detected");
     }
     return Promise.reject(error);
-  }
+  },
 );

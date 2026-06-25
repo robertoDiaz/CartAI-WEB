@@ -67,6 +67,23 @@
     "registerButton": "Sign Up",
     "registerLoading": "Creating account...",
     "loginError": "Failed to sign in. Check your credentials.",
-    "registerError": "Failed to register account."
+    "registerError": "Failed to register account.",
+    "updateProfileError": "Failed to update profile."
+  },
+  "profile": {
+    "title": "User Profile",
+    "description": "Manage your account settings and customize your avatar.",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "avatarLabel": "Profile Picture",
+    "avatarSpecs": "Upload a square image up to 5MB. JPG or PNG format.",
+    "rolesLabel": "Assigned Roles",
+    "noRoles": "No roles assigned",
+    "saveButton": "Save Changes",
+    "saving": "Saving...",
+    "success": "Profile updated successfully!",
+    "logoutButton": "Logout",
+    "uploadSuccess": "Profile picture uploaded successfully.",
+    "uploadError": "Error uploading avatar. Please try again."
   }
 }

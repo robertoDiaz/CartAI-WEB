@@ -12,6 +12,8 @@ vi.mock("../../../features/identity/identityService", () => ({
   identityService: {
     login: vi.fn(),
     register: vi.fn(),
+    uploadAvatar: vi.fn(),
+    updateUser: vi.fn(),
   },
 }));
 
@@ -30,6 +32,7 @@ describe("useIdentityStore", () => {
 
   it("should successfully log in and update state", async () => {
     const mockResponse = {
+      userId: "user-id-123",
       token: "mock-jwt-token",
       email: "test@example.com",
       name: "Test User",
@@ -44,6 +47,7 @@ describe("useIdentityStore", () => {
     const updatedStore = useIdentityStore.getState();
     expect(updatedStore.isAuthenticated).toBe(true);
     expect(updatedStore.token).toBe("mock-jwt-token");
+    expect(updatedStore.user?.id).toBe("user-id-123");
     expect(updatedStore.user?.email).toBe("test@example.com");
     expect(updatedStore.error).toBeNull();
   });
@@ -66,10 +70,48 @@ describe("useIdentityStore", () => {
     expect(updatedStore.error).toBe("Invalid credentials");
   });
 
+  it("should successfully update profile and update user in state", async () => {
+    const initialUser = {
+      id: "user-id-123",
+      email: "test@example.com",
+      name: "Test User",
+      roles: ["USER"],
+    };
+    useIdentityStore.setState({
+      user: initialUser,
+      token: "mock-jwt-token",
+      isAuthenticated: true,
+    });
+
+    const updatedUserResponse = {
+      id: "user-id-123",
+      email: "updated@example.com",
+      name: "Updated User",
+      roles: ["USER"],
+      avatarFileId: "avatar-file-id-456",
+    };
+
+    vi.mocked(identityService.updateUser).mockResolvedValueOnce(updatedUserResponse);
+
+    const store = useIdentityStore.getState();
+    await store.updateProfile({
+      id: "user-id-123",
+      name: "Updated User",
+      email: "updated@example.com",
+      roles: ["USER"],
+      avatarFileId: "avatar-file-id-456",
+    });
+
+    const updatedStore = useIdentityStore.getState();
+    expect(updatedStore.user?.name).toBe("Updated User");
+    expect(updatedStore.user?.email).toBe("updated@example.com");
+    expect(updatedStore.user?.avatarFileId).toBe("avatar-file-id-456");
+  });
+
   it("should successfully log out and clear state", () => {
     // Setup initial authenticated state
     useIdentityStore.setState({
-      user: { email: "test@example.com", name: "Test User", roles: [] },
+      user: { id: "user-id-123", email: "test@example.com", name: "Test User", roles: [] },
       token: "existing-token",
       isAuthenticated: true,
     });
