@@ -68,10 +68,12 @@ This section details the current progress, architectural decisions, and the deve
 * **Semantic Refactoring**: Refactored translation structures to rename the default i18next `t` alias to `translate` for semantic clarity across all components.
 * **Unit Testing (Vitest)**: Configured Vitest, jsdom, and `@testing-library/jest-dom`. Written comprehensive unit test suites for `cartStore.ts` (cart operations, totals, limits) and `themeService.ts` (theme configuration fallbacks and overriding resolution).
 * **Gestión de Perfil y Subida de Avatar**:
-  - Implementado el flujo completo de subida y gestión de foto de perfil (avatar) a través del endpoint `/api/users/avatar`.
-  - Integrada la edición de usuario a través de `PUT /api/users/{id}` vinculada a `UpdateUserRestRequest` y coordinada con la ID devuelta del avatar.
-  - Creada e integrada la vista de `ProfilePage.tsx` con opciones de edición, previsualización local e inicio/cierre de sesión dinámico.
-  - Adaptados los endpoints y maquetación para leer la ruta `/api/storage/files/` para recursos multimedia estáticos.
+  - Implementado el flujo completo de subida y gestión de foto de perfil (avatar) en total sincronía con el backend mediante `PUT /api/users/avatar/{id}`.
+  - La arquitectura del store global en `identityStore.ts` se ha optimizado para que, al subir un archivo, se almacene de inmediato el objeto `User` actualizado, eliminando estados locales redundantes y actualizando la interfaz de previsualización al vuelo.
+  - Adaptados los endpoints y maquetación para leer la ruta oficial de recursos multimedia `/api/storage/files/`.
+* **Testing E2E (Playwright)**:
+  - Se ha integrado Playwright para pruebas funcionales completas (E2E) contra el servidor backend real.
+  - Se ha creado el test de subida de avatar simulando un flujo completo de autenticación y carga multipart/form-data.
 
 ---
 
