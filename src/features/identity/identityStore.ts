@@ -88,6 +88,28 @@ export const useIdentityStore = create<IdentityState>()(
         }
       },
 
+      uploadAvatar: async (userId, file) => {
+        set({ isLoading: true, error: null });
+        try {
+          const updatedUser = await identityService.uploadAvatar(userId, file);
+          set({
+            user: {
+              id: updatedUser.id,
+              email: updatedUser.email,
+              name: updatedUser.name,
+              roles: updatedUser.roles || [],
+              avatarFileId: updatedUser.avatarFileId,
+            },
+            isLoading: false,
+          });
+        } catch (error: any) {
+          const message =
+            error.response?.data?.message || i18n.t("auth.updateProfileError");
+          set({ error: message, isLoading: false });
+          throw error;
+        }
+      },
+
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false, error: null });
       },

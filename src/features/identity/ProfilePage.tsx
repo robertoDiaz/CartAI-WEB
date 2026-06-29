@@ -30,11 +30,11 @@ export function ProfilePage() {
     error,
     clearError,
     isLoading,
+    uploadAvatar,
   } = useIdentityStore();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [avatarFileId, setAvatarFileId] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [uploading, setUploading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
@@ -47,7 +47,6 @@ export function ProfilePage() {
     } else {
       setName(user.name);
       setEmail(user.email);
-      setAvatarFileId(user.avatarFileId || "");
       if (user.avatarFileId) {
         setPreviewUrl(
           `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`,
@@ -72,11 +71,13 @@ export function ProfilePage() {
     setSuccessMsg("");
 
     try {
-      const response = await identityService.uploadAvatar(file);
-      setAvatarFileId(response.avatarFileId);
-      setPreviewUrl(
-        `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${response.avatarFileId}`,
-      );
+      if (!user) return;
+      await uploadAvatar(user.id, file);
+      
+      // We don't need to manually set preview URL here, because when uploadAvatar 
+      // updates the user state, the useEffect above will automatically run and 
+      // update the preview URL using the new user.avatarFileId!
+      
       setSuccessMsg(translate("profile.uploadSuccess"));
     } catch (err: any) {
       setLocalError(translate("profile.uploadError"));
@@ -107,7 +108,7 @@ export function ProfilePage() {
         name,
         email,
         roles: user.roles,
-        avatarFileId: avatarFileId || undefined,
+        avatarFileId: user.avatarFileId || undefined,
       });
       setSuccessMsg(translate("profile.success"));
     } catch (err: any) {

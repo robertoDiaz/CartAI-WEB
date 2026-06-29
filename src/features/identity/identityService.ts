@@ -29,17 +29,17 @@ export const identityService = {
     return response.data;
   },
 
-  uploadAvatar: async (file: File): Promise<{ avatarFileId: string }> => {
+  uploadAvatar: async (userId: string, file: File): Promise<User> => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await apiClient.post<{ avatarFileId: string }>(
-      "/api/users/avatar",
+    const response = await apiClient.put<User>(
+      `/api/users/avatar/${userId}`,
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": undefined,
         },
-      },
+      }
     );
     return response.data;
   },

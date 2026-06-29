@@ -14,6 +14,7 @@ export interface IdentityState {
   login: (request: LoginRestRequest) => Promise<void>;
   register: (request: RegisterRestRequest) => Promise<void>;
   updateProfile: (request: UpdateUserRestRequest) => Promise<void>;
+  uploadAvatar: (userId: string, file: File) => Promise<void>;
   logout: () => void;
   clearError: () => void;
 }
