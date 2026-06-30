@@ -77,6 +77,11 @@ This section details the current progress, architectural decisions, and the deve
 * **Seguridad de Perfil (Email y Password)**:
   - Se ha implementado un popup de cambio de contraseña (`oldPassword`, `newPassword`) directamente desde la página de Perfil.
   - El campo `email` se ha bloqueado como elemento de solo lectura para alinearse con la inmutabilidad de la API backend. Se ha limpiado el `email` de todas las peticiones `PUT` y test funcionales.
+* **Limpieza y Corrección de Tipos en Perfil**:
+  - Resueltos avisos de variables no utilizadas (como `onClosePasswordModal`) y errores de referencias indefinidas en los modales de dirección y contraseña.
+  - Corregido el tipado en el hook `useProfileAddresses` para interactuar de forma segura con los tipos de eventos en los checkboxes (`checked`).
+  - Corregida la estructura de acceso a los formularios (`generalForm` y `addressForm`), eliminando anidamientos de propiedad `.form` obsoletos.
+  - Eliminados errores sintácticos residuales (como etiquetas duplicadas y caracteres erróneos en JSX) y limpios los imports innecesarios (`React` e `useEffect`), logrando una compilación exitosa y sin warnings.
 
 ---
 
