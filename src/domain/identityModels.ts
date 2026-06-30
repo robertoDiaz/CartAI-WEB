@@ -38,5 +38,7 @@ export interface UpdateUserRestRequest {
   email: string;
   roles: string[];
   avatarFileId?: string;
+  oldPassword?: string;
+  newPassword?: string;
 }
 
