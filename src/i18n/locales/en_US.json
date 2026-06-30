@@ -1,89 +1,101 @@
 {
-  "navbar": {
-    "howItWorks": "How it Works",
-    "features": "Features",
-    "pricing": "Pricing",
-    "catalog": "Catalog",
-    "login": "Login",
-    "register": "Sign Up Now"
-  },
-  "hero": {
-    "titleMain": "Intelligent Commerce,",
-    "titleHighlight": "Powered by AI",
-    "description": "Optimize your store, personalize customer journeys, and automate operations with the power of Cart•AI.",
-    "startFree": "Start for Free",
-    "watchDemo": "Watch a 1-Minute Demo"
-  },
-  "features": {
-    "sectionTitle": "Feature Highlights",
-    "ai": {
-      "title": "AI Recommendations",
-      "description": "Increase cart value with perfect product matches."
-    },
-    "inventory": {
-      "title": "Predictive Inventory",
-      "description": "Never run out of bestsellers, minimize overstocking."
-    },
-    "insights": {
-      "title": "Personalized Insights",
-      "description": "Target users based on behavior, not just demographics."
-    }
-  },
-  "footer": {
-    "description": "The first e-commerce engine powered by AI and hexagonal architecture. Enterprise scalability for your business.",
-    "product": "Product",
-    "apiDocs": "API Documentation",
-    "legal": "Legal",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "rights": "All rights reserved."
-  },
-  "catalog": {
-    "title": "Product Catalog",
-    "addToCart": "Add to Cart",
-    "outOfStock": "Out of Stock",
-    "inStock": "In stock: {{count}}",
-    "cartTitle": "Your Cart",
-    "emptyCart": "The cart is empty.",
-    "clearCart": "Clear Cart",
-    "total": "Total",
-    "itemsCount": "items"
-  },
   "auth": {
-    "loginTitle": "Welcome back",
-    "loginOr": "Or ",
     "createAccountLink": "create a new account",
     "emailLabel": "Email Address",
     "emailPlaceholder": "example@cartai.com",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "••••••••",
     "loginButton": "Sign In",
-    "loginLoading": "Signing in...",
-    "registerTitle": "Join Cart•AI",
-    "registerAlready": "Already have an account? ",
+    "loginError": "Failed to sign in. Check your credentials.",
     "loginLink": "Sign in here",
+    "loginLoading": "Signing in...",
+    "loginOr": "Or ",
+    "loginTitle": "Welcome back",
     "nameLabel": "Full Name",
     "namePlaceholder": "John Doe",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "registerAlready": "Already have an account? ",
     "registerButton": "Sign Up",
-    "registerLoading": "Creating account...",
-    "loginError": "Failed to sign in. Check your credentials.",
     "registerError": "Failed to register account.",
+    "registerLoading": "Creating account...",
+    "registerTitle": "Join Cart•AI",
     "updateProfileError": "Failed to update profile."
   },
+  "catalog": {
+    "addToCart": "Add to Cart",
+    "cartTitle": "Your Cart",
+    "clearCart": "Clear Cart",
+    "emptyCart": "The cart is empty.",
+    "inStock": "In stock: {{count}}",
+    "itemsCount": "items",
+    "outOfStock": "Out of Stock",
+    "title": "Product Catalog",
+    "total": "Total"
+  },
+  "features": {
+    "ai": {
+      "description": "Increase cart value with perfect product matches.",
+      "title": "AI Recommendations"
+    },
+    "insights": {
+      "description": "Target users based on behavior, not just demographics.",
+      "title": "Personalized Insights"
+    },
+    "inventory": {
+      "description": "Never run out of bestsellers, minimize overstocking.",
+      "title": "Predictive Inventory"
+    },
+    "sectionTitle": "Feature Highlights"
+  },
+  "footer": {
+    "apiDocs": "API Documentation",
+    "description": "The first e-commerce engine powered by AI and hexagonal architecture. Enterprise scalability for your business.",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "product": "Product",
+    "rights": "All rights reserved.",
+    "terms": "Terms of Service"
+  },
+  "hero": {
+    "description": "Optimize your store, personalize customer journeys, and automate operations with the power of Cart•AI.",
+    "startFree": "Start for Free",
+    "titleHighlight": "Powered by AI",
+    "titleMain": "Intelligent Commerce,",
+    "watchDemo": "Watch a 1-Minute Demo"
+  },
+  "navbar": {
+    "catalog": "Catalog",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "login": "Login",
+    "pricing": "Pricing",
+    "register": "Sign Up Now"
+  },
   "profile": {
-    "title": "User Profile",
-    "description": "Manage your account settings and customize your avatar.",
-    "nameLabel": "Full Name",
-    "emailLabel": "Email Address",
     "avatarLabel": "Profile Picture",
     "avatarSpecs": "Upload a square image up to 5MB. JPG or PNG format.",
-    "rolesLabel": "Assigned Roles",
+    "cancelBtn": "Cancel",
+    "description": "Manage your account settings and customize your avatar.",
+    "emailLabel": "Email Address",
+    "errorAllFields": "All fields are required",
+    "errorMismatch": "New passwords do not match",
+    "idLabel": "User ID",
+    "logoutButton": "Logout",
+    "modalTitle": "Update Password",
+    "nameLabel": "Full Name",
+    "newPasswordLabel": "New Password",
     "noRoles": "No roles assigned",
+    "okBtn": "OK",
+    "oldPasswordLabel": "Old Password",
+    "passwordLabel": "Password",
+    "passwordPending": "* Password change pending. Click Save Changes to apply.",
+    "repeatPasswordLabel": "Repeat New Password",
+    "rolesLabel": "Assigned Roles",
     "saveButton": "Save Changes",
     "saving": "Saving...",
     "success": "Profile updated successfully!",
-    "logoutButton": "Logout",
-    "uploadSuccess": "Profile picture uploaded successfully.",
-    "uploadError": "Error uploading avatar. Please try again."
+    "title": "User Profile",
+    "updatePasswordBtn": "Update Password",
+    "uploadError": "Error uploading avatar. Please try again.",
+    "uploadSuccess": "Profile picture uploaded successfully."
   }
 }

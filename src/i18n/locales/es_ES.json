@@ -1,89 +1,101 @@
 {
-  "navbar": {
-    "howItWorks": "Cómo Funciona",
-    "features": "Funciones",
-    "pricing": "Precios",
-    "catalog": "Catálogo",
-    "login": "Iniciar Sesión",
-    "register": "Registrarse Ahora"
-  },
-  "hero": {
-    "titleMain": "Comercio Inteligente, ",
-    "titleHighlight": "Potenciado por IA",
-    "description": "Optimiza tu tienda, personaliza los viajes de los clientes y automatiza las operaciones con el poder de Cart•AI.",
-    "startFree": "Empieza Gratis",
-    "watchDemo": "Ver una Demo de 1 Minuto"
-  },
-  "features": {
-    "sectionTitle": "Destacados de Funciones",
-    "ai": {
-      "title": "Recomendaciones por IA",
-      "description": "Aumenta el valor del carrito con coincidencias de productos perfectas."
-    },
-    "inventory": {
-      "title": "Inventario Predictivo",
-      "description": "Nunca te quedes sin superventas, minimiza el exceso de stock."
-    },
-    "insights": {
-      "title": "Información Personalizada",
-      "description": "Dirígete a los usuarios en función de su comportamiento, no solo de su demografía."
-    }
-  },
-  "footer": {
-    "description": "El primer motor de comercio electrónico potenciado por IA y arquitectura hexagonal. Escalabilidad empresarial para tu negocio.",
-    "product": "Producto",
-    "apiDocs": "Documentación API",
-    "legal": "Legal",
-    "privacy": "Privacidad",
-    "terms": "Términos",
-    "rights": "Todos los derechos reservados."
-  },
-  "catalog": {
-    "title": "Catálogo de Productos",
-    "addToCart": "Añadir al Carrito",
-    "outOfStock": "Agotado",
-    "inStock": "En stock: {{count}}",
-    "cartTitle": "Tu Carrito",
-    "emptyCart": "El carrito está vacío.",
-    "clearCart": "Vaciar Carrito",
-    "total": "Total",
-    "itemsCount": "artículos"
-  },
   "auth": {
-    "loginTitle": "Bienvenido de nuevo",
-    "loginOr": "O ",
     "createAccountLink": "crea una cuenta nueva",
     "emailLabel": "Correo Electrónico",
     "emailPlaceholder": "ejemplo@cartai.com",
-    "passwordLabel": "Contraseña",
-    "passwordPlaceholder": "••••••••",
     "loginButton": "Iniciar Sesión",
-    "loginLoading": "Iniciando sesión...",
-    "registerTitle": "Únete a Cart•AI",
-    "registerAlready": "¿Ya tienes una cuenta? ",
+    "loginError": "Error al iniciar sesión. Verifica tus credenciales.",
     "loginLink": "Inicia sesión aquí",
+    "loginLoading": "Iniciando sesión...",
+    "loginOr": "O ",
+    "loginTitle": "Bienvenido de nuevo",
     "nameLabel": "Nombre Completo",
     "namePlaceholder": "Juan Pérez",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "registerAlready": "¿Ya tienes una cuenta? ",
     "registerButton": "Registrarse",
-    "registerLoading": "Creando cuenta...",
-    "loginError": "Error al iniciar sesión. Verifica tus credenciales.",
     "registerError": "Error al registrar la cuenta.",
+    "registerLoading": "Creando cuenta...",
+    "registerTitle": "Únete a Cart•AI",
     "updateProfileError": "Error al actualizar el perfil."
   },
+  "catalog": {
+    "addToCart": "Añadir al Carrito",
+    "cartTitle": "Tu Carrito",
+    "clearCart": "Vaciar Carrito",
+    "emptyCart": "El carrito está vacío.",
+    "inStock": "En stock: {{count}}",
+    "itemsCount": "artículos",
+    "outOfStock": "Agotado",
+    "title": "Catálogo de Productos",
+    "total": "Total"
+  },
+  "features": {
+    "ai": {
+      "description": "Aumenta el valor del carrito con coincidencias de productos perfectas.",
+      "title": "Recomendaciones por IA"
+    },
+    "insights": {
+      "description": "Dirígete a los usuarios en función de su comportamiento, no solo de su demografía.",
+      "title": "Información Personalizada"
+    },
+    "inventory": {
+      "description": "Nunca te quedes sin superventas, minimiza el exceso de stock.",
+      "title": "Inventario Predictivo"
+    },
+    "sectionTitle": "Destacados de Funciones"
+  },
+  "footer": {
+    "apiDocs": "Documentación API",
+    "description": "El primer motor de comercio electrónico potenciado por IA y arquitectura hexagonal. Escalabilidad empresarial para tu negocio.",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "product": "Producto",
+    "rights": "Todos los derechos reservados.",
+    "terms": "Términos"
+  },
+  "hero": {
+    "description": "Optimiza tu tienda, personaliza los viajes de los clientes y automatiza las operaciones con el poder de Cart•AI.",
+    "startFree": "Empieza Gratis",
+    "titleHighlight": "Potenciado por IA",
+    "titleMain": "Comercio Inteligente, ",
+    "watchDemo": "Ver una Demo de 1 Minuto"
+  },
+  "navbar": {
+    "catalog": "Catálogo",
+    "features": "Funciones",
+    "howItWorks": "Cómo Funciona",
+    "login": "Iniciar Sesión",
+    "pricing": "Precios",
+    "register": "Registrarse Ahora"
+  },
   "profile": {
-    "title": "Perfil de Usuario",
-    "description": "Administra los datos de tu cuenta y personaliza tu avatar.",
-    "nameLabel": "Nombre Completo",
-    "emailLabel": "Correo Electrónico",
     "avatarLabel": "Foto de Perfil",
     "avatarSpecs": "Sube una imagen cuadrada de hasta 5MB. Formato JPG o PNG.",
-    "rolesLabel": "Roles asignados",
+    "cancelBtn": "Cancelar",
+    "description": "Administra los datos de tu cuenta y personaliza tu avatar.",
+    "emailLabel": "Correo Electrónico",
+    "errorAllFields": "Todos los campos son obligatorios",
+    "errorMismatch": "Las nuevas contraseñas no coinciden",
+    "idLabel": "ID de Usuario",
+    "logoutButton": "Cerrar Sesión",
+    "modalTitle": "Actualizar Contraseña",
+    "nameLabel": "Nombre Completo",
+    "newPasswordLabel": "Nueva Contraseña",
     "noRoles": "Ningún rol asignado",
+    "okBtn": "OK",
+    "oldPasswordLabel": "Contraseña Antigua",
+    "passwordLabel": "Contraseña",
+    "passwordPending": "* Cambio de contraseña pendiente. Pulsa Guardar Cambios para aplicar.",
+    "repeatPasswordLabel": "Repetir Nueva Contraseña",
+    "rolesLabel": "Roles asignados",
     "saveButton": "Guardar Cambios",
     "saving": "Guardando...",
     "success": "¡Perfil actualizado con éxito!",
-    "logoutButton": "Cerrar Sesión",
-    "uploadSuccess": "Foto de perfil subida correctamente.",
-    "uploadError": "Error al subir el avatar. Por favor intenta de nuevo."
+    "title": "Perfil de Usuario",
+    "updatePasswordBtn": "Actualizar Contraseña",
+    "uploadError": "Error al subir el avatar. Por favor intenta de nuevo.",
+    "uploadSuccess": "Foto de perfil subida correctamente."
   }
 }
