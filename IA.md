@@ -74,6 +74,9 @@ This section details the current progress, architectural decisions, and the deve
 * **Testing E2E (Playwright)**:
   - Se ha integrado Playwright para pruebas funcionales completas (E2E) contra el servidor backend real.
   - Se ha creado el test de subida de avatar simulando un flujo completo de autenticación y carga multipart/form-data.
+* **Seguridad de Perfil (Email y Password)**:
+  - Se ha implementado un popup de cambio de contraseña (`oldPassword`, `newPassword`) directamente desde la página de Perfil.
+  - El campo `email` se ha bloqueado como elemento de solo lectura para alinearse con la inmutabilidad de la API backend. Se ha limpiado el `email` de todas las peticiones `PUT` y test funcionales.
 
 ---
 
