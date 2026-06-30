@@ -63,10 +63,14 @@
     "watchDemo": "Watch 1 Min Demo"
   },
   "navbar": {
+    "account": "Account",
+    "administration": "Administration",
     "catalog": "Catalog",
     "features": "Features",
     "howItWorks": "How it Works",
     "login": "Log In",
+    "logout": "Log out",
+    "myProfile": "My Profile",
     "pricing": "Pricing",
     "register": "Sign Up Now"
   },

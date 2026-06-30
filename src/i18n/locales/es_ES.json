@@ -63,10 +63,14 @@
     "watchDemo": "Ver una Demo de 1 Minuto"
   },
   "navbar": {
+    "account": "Cuenta",
+    "administration": "Administración",
     "catalog": "Catálogo",
     "features": "Funciones",
     "howItWorks": "Cómo Funciona",
     "login": "Iniciar Sesión",
+    "logout": "Cerrar sesión",
+    "myProfile": "Mi Perfil",
     "pricing": "Precios",
     "register": "Registrarse Ahora"
   },

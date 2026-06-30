@@ -4,17 +4,23 @@
  */
 
 import { Link } from "react-router-dom";
-import { LogIn, ShoppingCart, LogOut } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { LogIn, ShoppingCart, LogOut, User, Settings, ChevronDown } from "lucide-react";
 import LogoCartAI from "../../assets/logo-h.svg?react";
-import { useCartStore } from "../../features/cart/cartStore";
-import { useIdentityStore } from "../../features/identity/identityStore";
+import { useNavbar } from "./hooks/useNavbar";
 
 export function Navbar() {
-  const { t: translate } = useTranslation();
-  const items = useCartStore((state) => state.items);
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-  const { isAuthenticated, user, logout } = useIdentityStore();
+  const {
+    translate,
+    totalItems,
+    isAuthenticated,
+    user,
+    isDropdownOpen,
+    toggleDropdown,
+    closeDropdown,
+    handleLogout,
+    dropdownRef,
+    isAdmin,
+  } = useNavbar();
 
   return (
     <nav className="navbar-container">
@@ -54,8 +60,11 @@ export function Navbar() {
         </Link>
 
         {isAuthenticated ? (
-          <div className="flex items-center gap-4 ml-2 border-l border-slate-200 pl-4">
-            <Link to="/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <div className="flex items-center ml-2 border-l border-slate-200 pl-4 relative" ref={dropdownRef}>
+            <button
+              onClick={toggleDropdown}
+              className="flex items-center gap-2 hover:opacity-90 transition-opacity focus:outline-none cursor-pointer"
+            >
               {user?.avatarFileId ? (
                 <img
                   src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`}
@@ -70,10 +79,51 @@ export function Navbar() {
               <span className="text-sm font-semibold text-slate-700 hidden sm:block">
                 Hola, <span className="text-(--color-brand-primary)">{user?.name}</span>
               </span>
-            </Link>
-            <button onClick={() => logout()} className="btn-text text-slate-500 hover:text-red-500">
-              <LogOut className="w-5 h-5" />
+              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
+
+            {isDropdownOpen && (
+              <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-slate-100 rounded-2xl shadow-2xl z-50 py-2 divide-y divide-slate-100 animate-in fade-in slide-in-from-top-2 duration-150">
+                {/* User info Header */}
+                <div className="px-4 py-2.5">
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{translate("navbar.account")}</p>
+                  <p className="text-sm font-bold text-slate-900 truncate mt-0.5">{user?.name}</p>
+                  <p className="text-xs text-slate-500 truncate">{user?.email}</p>
+                </div>
+
+                <div className="py-1">
+                  <Link
+                    to="/profile"
+                    onClick={closeDropdown}
+                    className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                  >
+                    <User className="w-4 h-4 text-slate-400" />
+                    <span>{translate("navbar.myProfile")}</span>
+                  </Link>
+
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      onClick={closeDropdown}
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    >
+                      <Settings className="w-4 h-4 text-slate-400" />
+                      <span>{translate("navbar.administration")}</span>
+                    </Link>
+                  )}
+                </div>
+
+                <div className="py-1">
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors text-left cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 text-red-400" />
+                    <span>{translate("navbar.logout")}</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <>

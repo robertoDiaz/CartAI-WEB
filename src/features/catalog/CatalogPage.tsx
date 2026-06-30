@@ -4,30 +4,14 @@
  */
 
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Product } from "../../domain/shopModels";
-import { productService } from "../../services/productService";
 import { useCartStore } from "../cart/cartStore";
+import { useCatalog } from "./hooks/useCatalog";
 
 export function CatalogPage() {
   const { t: translate } = useTranslation();
   const { items, totalPrice, addItem, removeItem, clearCart } = useCartStore();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let active = true;
-    productService.getProducts().then((data) => {
-      if (active) {
-        setProducts(data);
-        setLoading(false);
-      }
-    });
-    return () => {
-      active = false;
-    };
-  }, []);
+  const { products, loading } = useCatalog();
 
   if (loading) {
     return (
