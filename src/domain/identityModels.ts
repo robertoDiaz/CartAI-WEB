@@ -9,6 +9,9 @@ export interface User {
   name: string;
   roles: string[];
   avatarFileId?: string;
+  phone?: string;
+  taxId?: string;
+  preferredLanguage?: string;
 }
 
 export interface AuthRestResponse {
@@ -18,6 +21,9 @@ export interface AuthRestResponse {
   name: string;
   roles: string[];
   avatarFileId?: string;
+  phone?: string;
+  taxId?: string;
+  preferredLanguage?: string;
 }
 
 export interface LoginRestRequest {
@@ -39,5 +45,8 @@ export interface UpdateUserRestRequest {
   avatarFileId?: string;
   oldPassword?: string;
   newPassword?: string;
+  phone?: string;
+  taxId?: string;
+  preferredLanguage?: string;
 }
 
