@@ -6,7 +6,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import i18n from "../../i18n/config";
-import { identityService } from "./identityService";
+import { identityService } from "../../services/identityService";
 import type { IdentityState } from "./types";
 
 import { useToastStore } from "../../components/ui/useToastStore";

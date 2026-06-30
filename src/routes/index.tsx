@@ -3,13 +3,17 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { LandingPage } from "../features/landing/LandingPage";
 import { CatalogPage } from "../features/catalog/CatalogPage";
 import { LoginPage } from "../features/identity/LoginPage";
 import { RegisterPage } from "../features/identity/RegisterPage";
 import { ProfilePage } from "../features/identity/ProfilePage";
+import { AdminGuard } from "../features/admin/AdminGuard";
+import { AdminLayout } from "../features/admin/AdminLayout";
+import { UserManagement } from "../features/admin/UserManagement";
+import { RoleManagement } from "../features/admin/RoleManagement";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +43,29 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "admin",
+        element: <AdminGuard />,
+        children: [
+          {
+            element: <AdminLayout />,
+            children: [
+              {
+                index: true,
+                element: <Navigate to="/admin/users" replace />,
+              },
+              {
+                path: "users",
+                element: <UserManagement />,
+              },
+              {
+                path: "roles",
+                element: <RoleManagement />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

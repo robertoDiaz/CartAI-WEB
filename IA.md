@@ -82,6 +82,13 @@ This section details the current progress, architectural decisions, and the deve
   - Corregido el tipado en el hook `useProfileAddresses` para interactuar de forma segura con los tipos de eventos en los checkboxes (`checked`).
   - Corregida la estructura de acceso a los formularios (`generalForm` y `addressForm`), eliminando anidamientos de propiedad `.form` obsoletos.
   - Eliminados errores sintácticos residuales (como etiquetas duplicadas y caracteres erróneos en JSX) y limpios los imports innecesarios (`React` e `useEffect`), logrando una compilación exitosa y sin warnings.
+* **Dropdown de Perfil y Panel de Administración (Usuarios y Roles)**:
+  - Diseñado e implementado el menú interactivo (Dropdown) de perfil en la barra de navegación, aislando su estado y el listener de click fuera de la caja en el custom hook [useNavbar.ts](file:///Users/rober/work/CartAI-WEB/src/components/layout/hooks/useNavbar.ts).
+  - Desarrollada la protección de rutas mediante [AdminGuard.tsx](file:///Users/rober/work/CartAI-WEB/src/features/admin/AdminGuard.tsx) y la distribución del panel lateral en [AdminLayout.tsx](file:///Users/rober/work/CartAI-WEB/src/features/admin/AdminLayout.tsx).
+  - Creado el panel de control de gestión de usuarios (CRUD) mediante [UserManagement.tsx](file:///Users/rober/work/CartAI-WEB/src/features/admin/UserManagement.tsx) y el hook de lógica [useUserManagement.ts](file:///Users/rober/work/CartAI-WEB/src/features/admin/hooks/useUserManagement.ts).
+  - Creada la gestión de roles y permisos mediante [RoleManagement.tsx](file:///Users/rober/work/CartAI-WEB/src/features/admin/RoleManagement.tsx) y su respectivo hook [useRoleManagement.ts](file:///Users/rober/work/CartAI-WEB/src/features/admin/hooks/useRoleManagement.ts).
+  - Todos los endpoints se comunican en tiempo real con la API local en Spring Boot y persisten los datos en MongoDB.
+  - Las claves de localización en [es_ES.json](file:///Users/rober/work/CartAI-WEB/src/i18n/locales/es_ES.json) y [en_US.json](file:///Users/rober/work/CartAI-WEB/src/i18n/locales/en_US.json) han sido ordenadas alfabéticamente de forma estricta.
 
 ---
 

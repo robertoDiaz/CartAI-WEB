@@ -9,8 +9,8 @@ import type {
   RegisterRestRequest,
   UpdateUserRestRequest,
   User,
-} from "../../domain/identityModels";
-import { apiClient } from "../../services/apiClient";
+} from "../domain/identityModels";
+import { apiClient } from "./apiClient";
 
 export const identityService = {
   login: async (request: LoginRestRequest): Promise<AuthRestResponse> => {

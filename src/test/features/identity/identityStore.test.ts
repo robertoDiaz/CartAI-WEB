@@ -5,10 +5,10 @@
 
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useIdentityStore } from "../../../features/identity/identityStore";
-import { identityService } from "../../../features/identity/identityService";
+import { identityService } from "../../../services/identityService";
 
 // Mock the identity service
-vi.mock("../../../features/identity/identityService", () => ({
+vi.mock("../../../services/identityService", () => ({
   identityService: {
     login: vi.fn(),
     register: vi.fn(),

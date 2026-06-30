@@ -38,15 +38,22 @@ export interface RegisterRestRequest {
   avatarFileId?: string;
 }
 
-export interface UpdateUserRestRequest {
+export interface Role {
   id: string;
   name: string;
-  roles: string[];
-  avatarFileId?: string;
-  oldPassword?: string;
-  newPassword?: string;
-  phone?: string;
-  taxId?: string;
-  preferredLanguage?: string;
+  permissions: string[];
 }
 
+export type CreateRoleRequest = Omit<Role, "id">;
+
+export interface CreateUserRequest extends Pick<User, "name" | "email" | "roles"> {
+  password?: string;
+}
+
+export interface UpdateUserRequest extends Omit<User, "email"> {
+  oldPassword?: string;
+  newPassword?: string;
+}
+
+// Backwards compatibility alias
+export type UpdateUserRestRequest = UpdateUserRequest;
