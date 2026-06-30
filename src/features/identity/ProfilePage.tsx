@@ -4,8 +4,6 @@
  */
 
 import {
-  AlertCircle,
-  CheckCircle2,
   LogOut,
   Mail,
   Save,
@@ -33,6 +31,7 @@ import { useIdentityStore } from "./identityStore";
 import { settingsService } from "../settings/settingsService";
 import { addressService } from "./addressService";
 import type { Address, AddressRestRequest } from "../../domain/addressModels";
+import { useToastStore } from "../../components/ui/useToastStore";
 
 const getLanguageLabel = (locale: string) => {
   try {
@@ -61,8 +60,6 @@ export function ProfilePage() {
     isAuthenticated,
     updateProfile,
     logout,
-    error,
-    clearError,
     isLoading,
     uploadAvatar,
   } = useIdentityStore();
@@ -80,8 +77,6 @@ export function ProfilePage() {
   
   const [previewUrl, setPreviewUrl] = useState("");
   const [uploading, setUploading] = useState(false);
-  const [successMsg, setSuccessMsg] = useState("");
-  const [localError, setLocalError] = useState("");
 
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [pendingPassword, setPendingPassword] = useState<{old: string, new: string} | null>(null);
@@ -161,15 +156,11 @@ export function ProfilePage() {
       setAddresses(data);
     } catch (err) {
       console.error(err);
-      setLocalError(translate("profile.errorLoadingAddresses"));
+      useToastStore.getState().addToast(translate("profile.errorLoadingAddresses"), "error");
     } finally {
       setLoadingAddresses(false);
     }
   };
-
-  useEffect(() => {
-    return () => clearError();
-  }, [clearError]);
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -178,15 +169,11 @@ export function ProfilePage() {
     const objectUrl = URL.createObjectURL(file);
     setPreviewUrl(objectUrl);
     setUploading(true);
-    setLocalError("");
-    setSuccessMsg("");
 
     try {
       if (!user) return;
       await uploadAvatar(user.id, file);
-      setSuccessMsg(translate("profile.uploadSuccess"));
     } catch (err: any) {
-      setLocalError(translate("profile.uploadError"));
       if (user?.avatarFileId) {
         setPreviewUrl(
           `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${user.avatarFileId}`,
@@ -203,10 +190,6 @@ export function ProfilePage() {
     e.preventDefault();
     if (!user) return;
 
-    setLocalError("");
-    setSuccessMsg("");
-    clearError();
-
     try {
       await updateProfile({
         id: user.id,
@@ -219,10 +202,9 @@ export function ProfilePage() {
         taxId,
         preferredLanguage
       });
-      setSuccessMsg(translate("profile.success"));
       setPendingPassword(null);
     } catch (err: any) {
-      // Error will be shown via store error
+      // Handled in store
     }
   };
 
@@ -320,7 +302,7 @@ export function ProfilePage() {
       loadAddresses();
     } catch (err) {
       console.error(err);
-      setLocalError(translate("profile.errorSavingAddress"));
+      useToastStore.getState().addToast(translate("profile.errorSavingAddress"), "error");
     }
   };
 
@@ -332,7 +314,7 @@ export function ProfilePage() {
         loadAddresses();
       } catch (err) {
         console.error(err);
-        setLocalError(translate("profile.errorDeletingAddress"));
+        useToastStore.getState().addToast(translate("profile.errorDeletingAddress"), "error");
       }
     }
   };
@@ -378,23 +360,6 @@ export function ProfilePage() {
         </div>
 
         <div className="p-8">
-          {successMsg && (
-            <div className="mb-6 bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-md flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-emerald-700 font-medium">
-                {successMsg}
-              </p>
-            </div>
-          )}
-
-          {(error || localError) && (
-            <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-red-700 font-medium">
-                {error || localError}
-              </p>
-            </div>
-          )}
 
           {activeTab === "general" && (
             <form onSubmit={handleGeneralSubmit} className="space-y-8 animate-in fade-in">

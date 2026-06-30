@@ -9,6 +9,8 @@ import i18n from "../../i18n/config";
 import { identityService } from "./identityService";
 import type { IdentityState } from "./types";
 
+import { useToastStore } from "../../components/ui/useToastStore";
+
 export const useIdentityStore = create<IdentityState>()(
   persist(
     (set) => ({
@@ -41,6 +43,7 @@ export const useIdentityStore = create<IdentityState>()(
           const message =
             error.response?.data?.message || i18n.t("auth.loginError");
           set({ error: message, isLoading: false, isAuthenticated: false });
+          useToastStore.getState().addToast(message, "error");
           throw error;
         }
       },
@@ -68,6 +71,7 @@ export const useIdentityStore = create<IdentityState>()(
           const message =
             error.response?.data?.message || i18n.t("auth.registerError");
           set({ error: message, isLoading: false, isAuthenticated: false });
+          useToastStore.getState().addToast(message, "error");
           throw error;
         }
       },
@@ -92,10 +96,12 @@ export const useIdentityStore = create<IdentityState>()(
             },
             isLoading: false,
           });
+          useToastStore.getState().addToast(i18n.t("profile.success"), "success");
         } catch (error: any) {
           const message =
             error.response?.data?.message || i18n.t("auth.updateProfileError");
           set({ error: message, isLoading: false });
+          useToastStore.getState().addToast(message, "error");
           throw error;
         }
       },
@@ -117,10 +123,12 @@ export const useIdentityStore = create<IdentityState>()(
             },
             isLoading: false,
           });
+          useToastStore.getState().addToast(i18n.t("profile.uploadSuccess"), "success");
         } catch (error: any) {
           const message =
-            error.response?.data?.message || i18n.t("auth.updateProfileError");
+            error.response?.data?.message || i18n.t("profile.uploadError");
           set({ error: message, isLoading: false });
+          useToastStore.getState().addToast(message, "error");
           throw error;
         }
       },

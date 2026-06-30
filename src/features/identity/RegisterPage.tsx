@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { UserPlus, Mail, Lock, User as UserIcon, ArrowRight, AlertCircle } from "lucide-react";
+import { UserPlus, Mail, Lock, User as UserIcon, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { useIdentityStore } from "./identityStore";
@@ -13,7 +13,7 @@ import { useIdentityStore } from "./identityStore";
 export function RegisterPage() {
   const { t: translate } = useTranslation();
   const navigate = useNavigate();
-  const { register, isLoading, error, isAuthenticated, clearError } = useIdentityStore();
+  const { register, isLoading, isAuthenticated } = useIdentityStore();
   
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,11 +25,6 @@ export function RegisterPage() {
       navigate("/catalog");
     }
   }, [isAuthenticated, navigate]);
-
-  // Clear errors when unmounting or when inputs change
-  useEffect(() => {
-    return () => clearError();
-  }, [clearError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,12 +56,6 @@ export function RegisterPage() {
         </div>
         
         <form className="mt-8 space-y-6 relative z-10" onSubmit={handleSubmit}>
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
-              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-red-700">{error}</p>
-            </div>
-          )}
 
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
@@ -86,10 +75,7 @@ export function RegisterPage() {
                   className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.namePlaceholder")}
                   value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    if (error) clearError();
-                  }}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             </div>
@@ -111,10 +97,7 @@ export function RegisterPage() {
                   className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.emailPlaceholder")}
                   value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    if (error) clearError();
-                  }}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -136,10 +119,7 @@ export function RegisterPage() {
                   className="appearance-none relative block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm transition-all bg-slate-50/50"
                   placeholder={translate("auth.passwordPlaceholder")}
                   value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    if (error) clearError();
-                  }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
