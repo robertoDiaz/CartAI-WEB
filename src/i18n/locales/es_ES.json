@@ -124,6 +124,7 @@
     "title": "Perfil de Usuario",
     "updatePasswordBtn": "Actualizar Contraseña",
     "uploadError": "Error al subir el avatar. Por favor intenta de nuevo.",
-    "uploadSuccess": "Foto de perfil subida correctamente."
+    "uploadSuccess": "Foto de perfil subida correctamente.",
+    "taxIdLabel": "Documento de Identidad (DNI)"
   }
 }

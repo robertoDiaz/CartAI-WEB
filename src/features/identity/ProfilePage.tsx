@@ -32,6 +32,18 @@ import { settingsService } from "../settings/settingsService";
 import { addressService } from "./addressService";
 import type { Address, AddressRestRequest } from "../../domain/addressModels";
 
+const formatLanguage = (locale: string) => {
+  const map: Record<string, string> = {
+    'es_ES': '🇪🇸 Español',
+    'en_US': '🇺🇸 English',
+    'fr_FR': '🇫🇷 Français',
+    'de_DE': '🇩🇪 Deutsch',
+    'it_IT': '🇮🇹 Italiano',
+    'pt_PT': '🇵🇹 Português',
+  };
+  return map[locale] || locale;
+};
+
 export function ProfilePage() {
   const { t: translate } = useTranslation();
   const navigate = useNavigate();
@@ -413,7 +425,7 @@ export function ProfilePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {translate("profile.idLabel")} / DNI
+                    {translate("profile.idLabel")}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -423,7 +435,24 @@ export function ProfilePage() {
                       type="text"
                       disabled
                       className="appearance-none block w-full px-3 py-2.5 pl-10 border border-slate-300 text-slate-500 bg-slate-100 rounded-lg sm:text-sm cursor-not-allowed"
-                      value={taxId || user?.id || ""}
+                      value={user?.id || ""}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    {translate("profile.taxIdLabel", "Documento de Identidad (DNI)")}
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <CreditCard className="h-5 w-5 text-slate-400" />
+                    </div>
+                    <input
+                      type="text"
+                      className="appearance-none block w-full px-3 py-2.5 pl-10 border border-slate-300 placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm bg-slate-50/50"
+                      value={taxId}
+                      onChange={(e) => setTaxId(e.target.value)}
                     />
                   </div>
                 </div>
@@ -495,7 +524,7 @@ export function ProfilePage() {
                     >
                       <option value="">{translate("profile.selectLanguage")}</option>
                       {languages.map((lang) => (
-                        <option key={lang} value={lang}>{lang}</option>
+                        <option key={lang} value={lang}>{formatLanguage(lang)}</option>
                       ))}
                     </select>
                   </div>

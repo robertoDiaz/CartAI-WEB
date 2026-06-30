@@ -124,6 +124,7 @@
     "title": "User Profile",
     "updatePasswordBtn": "Update Password",
     "uploadError": "Error uploading avatar. Please try again.",
-    "uploadSuccess": "Profile picture successfully uploaded."
+    "uploadSuccess": "Profile picture successfully uploaded.",
+    "taxIdLabel": "Tax ID / SSN"
   }
 }
