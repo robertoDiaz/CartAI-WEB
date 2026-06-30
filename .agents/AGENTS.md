@@ -12,3 +12,7 @@
 
 - **Uso de claves de traducción.**
   no se puede hardcodear en las clases mensajes que aparezcan por pantalla que no estén internacionalizados.
+
+- **Creación y Modificación de Tests.**
+  Si un cambio introduce nueva funcionalidad o modifica la existente, es obligatorio crear o adaptar los tests correspondientes (unitarios, de integración o funcionales/E2E) para dar cobertura a los cambios realizados.
+

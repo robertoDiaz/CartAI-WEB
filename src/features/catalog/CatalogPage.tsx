@@ -40,6 +40,24 @@ export function CatalogPage() {
               return (
                 <div key={product.id} className="product-card">
                   <div>
+                    {/* Contenedor de la Imagen */}
+                    <div className="w-full h-48 rounded-lg overflow-hidden bg-slate-50 mb-4 border border-slate-100/80 flex items-center justify-center relative">
+                      {product.imageFileIds && product.imageFileIds.length > 0 ? (
+                        <img
+                          src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${product.imageFileIds[0]}`}
+                          alt={product.name}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center gap-2 text-slate-300">
+                          <ShoppingBag className="w-12 h-12 stroke-1" />
+                          <span className="text-xs font-semibold text-slate-400">
+                            {translate("catalog.noImage", "Sin imagen")}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
                     <div className="flex justify-between items-start mb-3">
                       <span
                         className={
