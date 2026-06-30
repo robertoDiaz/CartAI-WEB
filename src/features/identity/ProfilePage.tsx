@@ -21,7 +21,9 @@ import {
   Plus,
   Edit2,
   Trash2,
-  Star
+  Star,
+  ChevronDown,
+  Check
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -32,16 +34,112 @@ import { settingsService } from "../settings/settingsService";
 import { addressService } from "./addressService";
 import type { Address, AddressRestRequest } from "../../domain/addressModels";
 
-const formatLanguage = (locale: string) => {
+const getLanguageLabel = (locale: string) => {
   const map: Record<string, string> = {
-    'es_ES': '🇪🇸 Español',
-    'en_US': '🇺🇸 English',
-    'fr_FR': '🇫🇷 Français',
-    'de_DE': '🇩🇪 Deutsch',
-    'it_IT': '🇮🇹 Italiano',
-    'pt_PT': '🇵🇹 Português',
+    'es_ES': 'Español',
+    'en_US': 'English',
+    'fr_FR': 'Français',
+    'de_DE': 'Deutsch',
+    'it_IT': 'Italiano',
+    'pt_PT': 'Português',
   };
   return map[locale] || locale;
+};
+
+const renderFlag = (locale: string) => {
+  const containerClass = "w-5 h-5 rounded-full overflow-hidden border border-slate-200 shrink-0 flex items-center justify-center shadow-xs";
+  
+  if (locale === "es_ES") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 750 500" className="w-full h-full object-cover">
+          <rect width="750" height="500" fill="#c60b1e" />
+          <rect width="750" height="250" y="125" fill="#ffc400" />
+        </svg>
+      </div>
+    );
+  }
+  
+  if (locale === "en_US") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 7400 3900" className="w-full h-full object-cover">
+          <rect width="7400" height="3900" fill="#b22234" />
+          <path d="M0,300h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0z" fill="#fff" />
+          <rect width="2960" height="2100" fill="#3c3b6e" />
+          <circle cx="500" cy="400" r="80" fill="#fff" />
+          <circle cx="1000" cy="400" r="80" fill="#fff" />
+          <circle cx="1500" cy="400" r="80" fill="#fff" />
+          <circle cx="2000" cy="400" r="80" fill="#fff" />
+          <circle cx="2500" cy="400" r="80" fill="#fff" />
+          <circle cx="500" cy="1000" r="80" fill="#fff" />
+          <circle cx="1000" cy="1000" r="80" fill="#fff" />
+          <circle cx="1500" cy="1000" r="80" fill="#fff" />
+          <circle cx="2000" cy="1000" r="80" fill="#fff" />
+          <circle cx="2500" cy="1000" r="80" fill="#fff" />
+          <circle cx="500" cy="1700" r="80" fill="#fff" />
+          <circle cx="1000" cy="1700" r="80" fill="#fff" />
+          <circle cx="1500" cy="1700" r="80" fill="#fff" />
+          <circle cx="2000" cy="1700" r="80" fill="#fff" />
+          <circle cx="2500" cy="1700" r="80" fill="#fff" />
+        </svg>
+      </div>
+    );
+  }
+  
+  if (locale === "fr_FR") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
+          <rect width="1" height="2" fill="#00209F" />
+          <rect width="1" height="2" x="1" fill="#FFF" />
+          <rect width="1" height="2" x="2" fill="#F31830" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (locale === "de_DE") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 5 3" className="w-full h-full object-cover">
+          <rect width="5" height="1" fill="#000" />
+          <rect width="5" height="1" y="1" fill="#D00" />
+          <rect width="5" height="1" y="2" fill="#FFCE00" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (locale === "it_IT") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
+          <rect width="1" height="2" fill="#009246" />
+          <rect width="1" height="2" x="1" fill="#FFF" />
+          <rect width="1" height="2" x="2" fill="#C13" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (locale === "pt_PT") {
+    return (
+      <div className={containerClass}>
+        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
+          <rect width="1.2" height="2" fill="#060" />
+          <rect width="1.8" height="2" x="1.2" fill="#F00" />
+          <circle cx="1.2" cy="1" r="0.3" fill="#FF0" />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${containerClass} bg-slate-100 text-[10px] font-bold text-slate-500 uppercase`}>
+      {locale.substring(0, 2)}
+    </div>
+  );
 };
 
 export function ProfilePage() {
@@ -67,6 +165,7 @@ export function ProfilePage() {
   const [taxId, setTaxId] = useState("");
   const [preferredLanguage, setPreferredLanguage] = useState("");
   const [languages, setLanguages] = useState<string[]>([]);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   
   const [previewUrl, setPreviewUrl] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -122,6 +221,18 @@ export function ProfilePage() {
   // Fetch languages
   useEffect(() => {
     settingsService.getLanguages().then(setLanguages).catch(console.error);
+  }, []);
+
+  // Close language dropdown on outside click
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".lang-dropdown-container")) {
+        setIsLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
   // Fetch addresses when tab changes
@@ -513,20 +624,51 @@ export function ProfilePage() {
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     {translate("profile.languageLabel")}
                   </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="relative lang-dropdown-container">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                       <Globe className="h-5 w-5 text-slate-400" />
                     </div>
-                    <select
-                      className="appearance-none block w-full px-3 py-2.5 pl-10 border border-slate-300 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm bg-slate-50/50"
-                      value={preferredLanguage}
-                      onChange={(e) => setPreferredLanguage(e.target.value)}
+                    <button
+                      type="button"
+                      onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                      className="w-full flex items-center justify-between px-3 py-2.5 pl-10 border border-slate-300 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent sm:text-sm bg-slate-50/50 text-left transition-all"
                     >
-                      <option value="">{translate("profile.selectLanguage")}</option>
-                      {languages.map((lang) => (
-                        <option key={lang} value={lang}>{formatLanguage(lang)}</option>
-                      ))}
-                    </select>
+                      <span className="flex items-center gap-2">
+                        {preferredLanguage ? (
+                          <>
+                            {renderFlag(preferredLanguage)}
+                            <span>{getLanguageLabel(preferredLanguage)}</span>
+                          </>
+                        ) : (
+                          <span className="text-slate-400">{translate("profile.selectLanguage")}</span>
+                        )}
+                      </span>
+                      <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {isLangDropdownOpen && (
+                      <div className="absolute z-30 mt-1.5 w-full bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-150">
+                        {languages.map((lang) => (
+                          <button
+                            key={lang}
+                            type="button"
+                            onClick={() => {
+                                setPreferredLanguage(lang);
+                                setIsLangDropdownOpen(false);
+                            }}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-slate-50 transition-colors ${
+                              preferredLanguage === lang ? 'bg-blue-50/30 font-semibold text-(--color-brand-primary)' : 'text-slate-700'
+                            }`}
+                          >
+                            {renderFlag(lang)}
+                            <span>{getLanguageLabel(lang)}</span>
+                            {preferredLanguage === lang && (
+                              <Check className="w-4 h-4 text-(--color-brand-primary) ml-auto" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
                 
