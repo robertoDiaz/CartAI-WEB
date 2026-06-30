@@ -8,6 +8,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { themeService } from "./services/themeService";
 import "./i18n/config";
+import "flag-icons/css/flag-icons.min.css";
 import "./index.css";
 
 themeService.initializeTheme().then(() => {

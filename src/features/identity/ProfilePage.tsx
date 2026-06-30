@@ -35,110 +35,21 @@ import { addressService } from "./addressService";
 import type { Address, AddressRestRequest } from "../../domain/addressModels";
 
 const getLanguageLabel = (locale: string) => {
-  const map: Record<string, string> = {
-    'es_ES': 'Español',
-    'en_US': 'English',
-    'fr_FR': 'Français',
-    'de_DE': 'Deutsch',
-    'it_IT': 'Italiano',
-    'pt_PT': 'Português',
-  };
-  return map[locale] || locale;
+  try {
+    const languageCode = locale.replace('_', '-');
+    const displayNames = new Intl.DisplayNames([languageCode], { type: 'language' });
+    const name = displayNames.of(languageCode.split('-')[0]);
+    return name ? name.charAt(0).toUpperCase() + name.slice(1) : locale;
+  } catch (e) {
+    return locale;
+  }
 };
 
 const renderFlag = (locale: string) => {
-  const containerClass = "w-5 h-5 rounded-full overflow-hidden border border-slate-200 shrink-0 flex items-center justify-center shadow-xs";
-  
-  if (locale === "es_ES") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 750 500" className="w-full h-full object-cover">
-          <rect width="750" height="500" fill="#c60b1e" />
-          <rect width="750" height="250" y="125" fill="#ffc400" />
-        </svg>
-      </div>
-    );
-  }
-  
-  if (locale === "en_US") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 7400 3900" className="w-full h-full object-cover">
-          <rect width="7400" height="3900" fill="#b22234" />
-          <path d="M0,300h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0zm0,600h7400v300H0z" fill="#fff" />
-          <rect width="2960" height="2100" fill="#3c3b6e" />
-          <circle cx="500" cy="400" r="80" fill="#fff" />
-          <circle cx="1000" cy="400" r="80" fill="#fff" />
-          <circle cx="1500" cy="400" r="80" fill="#fff" />
-          <circle cx="2000" cy="400" r="80" fill="#fff" />
-          <circle cx="2500" cy="400" r="80" fill="#fff" />
-          <circle cx="500" cy="1000" r="80" fill="#fff" />
-          <circle cx="1000" cy="1000" r="80" fill="#fff" />
-          <circle cx="1500" cy="1000" r="80" fill="#fff" />
-          <circle cx="2000" cy="1000" r="80" fill="#fff" />
-          <circle cx="2500" cy="1000" r="80" fill="#fff" />
-          <circle cx="500" cy="1700" r="80" fill="#fff" />
-          <circle cx="1000" cy="1700" r="80" fill="#fff" />
-          <circle cx="1500" cy="1700" r="80" fill="#fff" />
-          <circle cx="2000" cy="1700" r="80" fill="#fff" />
-          <circle cx="2500" cy="1700" r="80" fill="#fff" />
-        </svg>
-      </div>
-    );
-  }
-  
-  if (locale === "fr_FR") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
-          <rect width="1" height="2" fill="#00209F" />
-          <rect width="1" height="2" x="1" fill="#FFF" />
-          <rect width="1" height="2" x="2" fill="#F31830" />
-        </svg>
-      </div>
-    );
-  }
-
-  if (locale === "de_DE") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 5 3" className="w-full h-full object-cover">
-          <rect width="5" height="1" fill="#000" />
-          <rect width="5" height="1" y="1" fill="#D00" />
-          <rect width="5" height="1" y="2" fill="#FFCE00" />
-        </svg>
-      </div>
-    );
-  }
-
-  if (locale === "it_IT") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
-          <rect width="1" height="2" fill="#009246" />
-          <rect width="1" height="2" x="1" fill="#FFF" />
-          <rect width="1" height="2" x="2" fill="#C13" />
-        </svg>
-      </div>
-    );
-  }
-
-  if (locale === "pt_PT") {
-    return (
-      <div className={containerClass}>
-        <svg viewBox="0 0 3 2" className="w-full h-full object-cover">
-          <rect width="1.2" height="2" fill="#060" />
-          <rect width="1.8" height="2" x="1.2" fill="#F00" />
-          <circle cx="1.2" cy="1" r="0.3" fill="#FF0" />
-        </svg>
-      </div>
-    );
-  }
-
+  const countryCode = locale.split('_')[1]?.toLowerCase();
+  if (!countryCode) return null;
   return (
-    <div className={`${containerClass} bg-slate-100 text-[10px] font-bold text-slate-500 uppercase`}>
-      {locale.substring(0, 2)}
-    </div>
+    <span className={`fi fi-${countryCode} w-5 h-5 rounded-full overflow-hidden border border-slate-200 shrink-0 shadow-xs object-cover`} />
   );
 };
 
