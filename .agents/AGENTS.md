@@ -16,3 +16,10 @@
 - **Creación y Modificación de Tests.**
   Si un cambio introduce nueva funcionalidad o modifica la existente, es obligatorio crear o adaptar los tests correspondientes (unitarios, de integración o funcionales/E2E) para dar cobertura a los cambios realizados.
 
+
+- **Flujo de Trabajo con Linear y Commits:**
+  1. Al iniciar una nueva tarea, los requisitos detallados se deben documentar exclusivamente en Linear.
+  2. Las tareas deben desglosarse en subtareas (ej. Front y Back).
+  3. Los commits de cada repositorio deben llevar como prefijo el ID de la subtarea de Linear correspondiente (ej. `CAR-6: mensaje`).
+  4. Antigravity no hará commits automáticamente; solo preparará los mensajes con los prefijos y esperará la orden.
+  5. Antigravity gestionará el estado de las tareas de Linear (In Progress, Done) en función del avance.
