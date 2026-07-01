@@ -202,10 +202,10 @@
     "success": "Profile successfully updated!",
     "tabAddresses": "Addresses",
     "tabGeneral": "General",
+    "taxIdLabel": "Tax ID / SSN",
     "title": "User Profile",
     "updatePasswordBtn": "Update Password",
     "uploadError": "Error uploading avatar. Please try again.",
-    "uploadSuccess": "Profile picture successfully uploaded.",
-    "taxIdLabel": "Tax ID / SSN"
+    "uploadSuccess": "Profile picture successfully uploaded."
   }
 }

@@ -159,10 +159,11 @@ export function ProductManagement() {
               <div className="p-6 space-y-4">
                 {/* Name */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+                  <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5">
                     {translate("admin.formProductNameLabel", "Nombre del Producto")}
                   </label>
                   <input
+                    id="name"
                     type="text"
                     required
                     className="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent outline-none text-sm"
@@ -173,10 +174,11 @@ export function ProductManagement() {
 
                 {/* Description */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+                  <label htmlFor="description" className="block text-sm font-semibold text-slate-700 mb-1.5">
                     {translate("admin.formDescriptionLabel", "Descripción")}
                   </label>
                   <textarea
+                    id="description"
                     required
                     rows={3}
                     className="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-(--color-brand-accent) focus:border-transparent outline-none text-sm resize-none"
@@ -188,10 +190,11 @@ export function ProductManagement() {
                 {/* Price and Stock */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+                    <label htmlFor="price" className="block text-sm font-semibold text-slate-700 mb-1.5">
                       {translate("admin.formPriceLabel", "Precio")}
                     </label>
                     <input
+                      id="price"
                       type="number"
                       step="0.01"
                       min="0"
@@ -202,10 +205,11 @@ export function ProductManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+                    <label htmlFor="stock" className="block text-sm font-semibold text-slate-700 mb-1.5">
                       {translate("admin.formStockLabel", "Stock")}
                     </label>
                     <input
+                      id="stock"
                       type="number"
                       min="0"
                       required

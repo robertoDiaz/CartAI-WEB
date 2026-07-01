@@ -30,15 +30,22 @@ export const productService = {
   uploadImage: async (file: File): Promise<string> => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await apiClient.post<{ id: string }>(
-      "/api/storage/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": undefined,
-        },
-      }
-    );
-    return response.data.id;
+
+    const token = JSON.parse(localStorage.getItem("identity-storage") || "{}")?.state?.token;
+    
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/upload`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to upload image");
+    }
+    
+    const data = await response.json();
+    return data.id;
   }
 };

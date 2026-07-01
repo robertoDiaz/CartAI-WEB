@@ -10,7 +10,7 @@ export function AdminGuard() {
   const { isAuthenticated, user } = useIdentityStore();
 
   const isAdmin = user?.roles?.some(
-    (role) => role.toUpperCase() === "ADMIN" || role.toUpperCase() === "ROLE_ADMIN"
+    (role) => role.toUpperCase() === "ADMIN" || role.toUpperCase() === "ROLE_ADMIN" || role.toUpperCase() === "VENDOR" || role.toUpperCase() === "ROLE_VENDOR"
   );
 
   if (!isAuthenticated) {
