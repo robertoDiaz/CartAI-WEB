@@ -7,6 +7,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { LandingPage } from "../features/landing/LandingPage";
 import { CatalogPage } from "../features/catalog/CatalogPage";
+import { ProductDetailPage } from "../features/catalog/ProductDetailPage";
 import { LoginPage } from "../features/identity/LoginPage";
 import { RegisterPage } from "../features/identity/RegisterPage";
 import { ProfilePage } from "../features/identity/ProfilePage";
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "catalog",
         element: <CatalogPage />,
+      },
+      {
+        path: "catalog/:id",
+        element: <ProductDetailPage />,
       },
       {
         path: "login",

@@ -5,6 +5,7 @@
 
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { useCartStore } from "../cart/cartStore";
 import { useCatalog } from "./hooks/useCatalog";
 
@@ -41,7 +42,7 @@ export function CatalogPage() {
                 <div key={product.id} className="product-card">
                   <div>
                     {/* Contenedor de la Imagen */}
-                    <div className="w-full h-48 rounded-lg overflow-hidden bg-slate-50 mb-4 border border-slate-100/80 flex items-center justify-center relative">
+                    <Link to={`/catalog/${product.id}`} className="w-full h-48 rounded-lg overflow-hidden bg-slate-50 mb-4 border border-slate-100/80 flex items-center justify-center relative block">
                       {product.imageFileIds && product.imageFileIds.length > 0 ? (
                         <img
                           src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${product.imageFileIds[0]}`}
@@ -56,7 +57,7 @@ export function CatalogPage() {
                           </span>
                         </div>
                       )}
-                    </div>
+                    </Link>
 
                     <div className="flex justify-between items-start mb-3">
                       <span
@@ -77,9 +78,11 @@ export function CatalogPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-(--color-brand-primary) mb-2">
-                      {product.name}
-                    </h3>
+                    <Link to={`/catalog/${product.id}`} className="hover:underline">
+                      <h3 className="text-lg font-bold text-(--color-brand-primary) mb-2">
+                        {product.name}
+                      </h3>
+                    </Link>
                     <p className="text-slate-600 text-sm mb-6 leading-relaxed">
                       {product.description}
                     </p>
