@@ -3,7 +3,7 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import { ArrowLeft, Shield, Users } from "lucide-react";
+import { ArrowLeft, Shield, Users, PackageOpen } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
@@ -40,7 +40,21 @@ export function AdminLayout() {
                 }
               >
                 <Users className="w-4 h-4" />
-                <span>{translate("admin.menuUsers", "Users")}</span>
+                <span>{translate("admin.menuUsers", "Usuarios")}</span>
+              </NavLink>
+
+              <NavLink
+                to="/admin/products"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                    isActive
+                      ? "bg-(--color-brand-primary) text-white shadow-md"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  }`
+                }
+              >
+                <PackageOpen className="w-4 h-4" />
+                <span>{translate("admin.menuProducts", "Productos")}</span>
               </NavLink>
 
               <NavLink

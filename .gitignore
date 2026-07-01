@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporales de IA
+.commit_msg
+update_linear.sh
+*.cjs
