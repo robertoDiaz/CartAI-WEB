@@ -1,4 +1,6 @@
 import { Search, Plus, Edit2, Trash2, X, PackageOpen, ImageIcon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ProductImage } from "../catalog/components/ProductImage";
 import { useProductManagement } from "./hooks/useProductManagement";
 
 export function ProductManagement() {
@@ -82,18 +84,17 @@ export function ProductManagement() {
                 {filteredProducts.map((product) => (
                   <tr key={product.id} className="hover:bg-slate-50/55 transition-colors">
                     <td className="py-4 px-6 flex items-center gap-3">
-                      {product.imageFileIds && product.imageFileIds.length > 0 ? (
-                        <img
-                          src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${product.imageFileIds[0]}`}
-                          alt={product.name}
-                          className="w-10 h-10 rounded-lg object-cover border border-slate-200"
+                      <Link to={`/catalog/${product.id}`} className="shrink-0 w-10 h-10 block rounded-lg overflow-hidden border border-slate-200 hover:opacity-80 transition-opacity">
+                        <ProductImage 
+                          imageFileIds={product.imageFileIds} 
+                          alt={product.name} 
+                          iconSize={20} 
+                          showFallbackText={false}
                         />
-                      ) : (
-                        <div className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400">
-                          <ImageIcon className="w-5 h-5" />
-                        </div>
-                      )}
-                      <span className="font-semibold text-slate-800">{product.name}</span>
+                      </Link>
+                      <Link to={`/catalog/${product.id}`} className="hover:underline">
+                        <span className="font-semibold text-slate-800">{product.name}</span>
+                      </Link>
                     </td>
                     <td className="py-4 px-6 font-medium text-slate-600 max-w-xs truncate">
                       {product.description}
@@ -235,10 +236,11 @@ export function ProductManagement() {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <img
-                            src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${form.imageFileIds[0]}`}
-                            alt="Current"
-                            className="w-full h-full object-cover"
+                          <ProductImage 
+                            imageFileIds={form.imageFileIds} 
+                            alt="Current" 
+                            iconSize={24} 
+                            showFallbackText={false}
                           />
                         )}
                       </div>

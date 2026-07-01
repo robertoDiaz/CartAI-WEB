@@ -7,11 +7,13 @@ import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCartStore } from "../cart/cartStore";
+import { CartSidebar } from "../cart/CartSidebar";
 import { useCatalog } from "./hooks/useCatalog";
+import { ProductImage } from "./components/ProductImage";
 
 export function CatalogPage() {
   const { t: translate } = useTranslation();
-  const { items, totalPrice, addItem, removeItem, clearCart } = useCartStore();
+  const { addItem } = useCartStore();
   const { products, loading } = useCatalog();
 
   if (loading) {
@@ -43,20 +45,12 @@ export function CatalogPage() {
                   <div>
                     {/* Contenedor de la Imagen */}
                     <Link to={`/catalog/${product.id}`} className="w-full h-48 rounded-lg overflow-hidden bg-slate-50 mb-4 border border-slate-100/80 flex items-center justify-center relative block">
-                      {product.imageFileIds && product.imageFileIds.length > 0 ? (
-                        <img
-                          src={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/files/${product.imageFileIds[0]}`}
-                          alt={product.name}
-                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center gap-2 text-slate-300">
-                          <ShoppingBag className="w-12 h-12 stroke-1" />
-                          <span className="text-xs font-semibold text-slate-400">
-                            {translate("catalog.noImage", "Sin imagen")}
-                          </span>
-                        </div>
-                      )}
+                      <ProductImage 
+                        imageFileIds={product.imageFileIds} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+                        iconSize={48} 
+                      />
                     </Link>
 
                     <div className="flex justify-between items-start mb-3">
@@ -108,83 +102,7 @@ export function CatalogPage() {
 
         {/* Sección del carrito */}
         <div className="lg:w-1/3">
-          <div className="cart-sidebar">
-            <div className="flex justify-between items-center mb-6 border-b pb-4 border-slate-200">
-              <h2 className="text-xl font-bold text-(--color-brand-primary) flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-(--color-brand-accent)" />
-                {translate("catalog.cartTitle")}
-              </h2>
-              {items.length > 0 && (
-                <button
-                  onClick={clearCart}
-                  className="btn-text text-red-500 hover:text-red-700 text-xs flex items-center gap-1"
-                >
-                  <Trash2 className="w-4 h-4" />
-                  {translate("catalog.clearCart")}
-                </button>
-              )}
-            </div>
-
-            {items.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-slate-400 text-sm font-medium">
-                  {translate("catalog.emptyCart")}
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <div className="max-h-96 overflow-y-auto pr-1 space-y-3">
-                  {items.map((item) => (
-                    <div key={item.product.id} className="cart-item-row">
-                      <div className="flex-grow pr-3">
-                        <h4 className="text-sm font-semibold text-(--color-brand-primary) line-clamp-1">
-                          {item.product.name}
-                        </h4>
-                        <span className="text-xs text-slate-500">
-                          ${item.product.price.toFixed(2)} c/u
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2 bg-white rounded-md border border-slate-200 px-1 py-0.5">
-                        <button
-                          onClick={() => removeItem(item.product.id)}
-                          className="p-1 hover:text-(--color-brand-accent) text-slate-500 transition-colors bg-transparent border-none cursor-pointer"
-                        >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <span className="text-sm font-bold text-(--color-brand-primary) px-1 min-w-4 text-center">
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() => addItem(item.product)}
-                          disabled={item.quantity >= item.product.stock}
-                          className={`p-1 transition-colors bg-transparent border-none cursor-pointer ${
-                            item.quantity >= item.product.stock
-                              ? "text-slate-300 cursor-not-allowed"
-                              : "hover:text-(--color-brand-accent) text-slate-500"
-                          }`}
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t pt-4 border-slate-200 mt-6 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-semibold text-(--color-brand-primary)">
-                      {translate("catalog.total")}
-                    </span>
-                    <span className="text-2xl font-bold text-(--color-brand-accent)">
-                      ${totalPrice.toFixed(2)}
-                    </span>
-                  </div>
-                  <button className="btn-primary-dark w-full">Checkout</button>
-                </div>
-              </div>
-            )}
-          </div>
+          <CartSidebar />
         </div>
       </div>
     </div>
