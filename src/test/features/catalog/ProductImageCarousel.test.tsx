@@ -4,7 +4,14 @@ import { ProductImageCarousel } from "../../../features/catalog/components/Produ
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
-    t: (_key: string, defaultValue: string) => defaultValue,
+    t: (key: string) => {
+      if (key === "catalog.zoomImage") return "Ampliar imagen";
+      if (key === "catalog.close") return "Cerrar";
+      if (key === "catalog.previous") return "Anterior";
+      if (key === "catalog.next") return "Siguiente";
+      if (key === "catalog.noImage") return "Sin imagen";
+      return key;
+    },
   }),
 }));
 

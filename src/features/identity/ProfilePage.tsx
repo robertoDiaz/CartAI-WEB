@@ -209,7 +209,7 @@ export function ProfilePage() {
                   </div>
                 </div>                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {translate("profile.taxIdLabel", "Documento de Identidad (DNI)")}
+                    {translate("profile.taxIdLabel")}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
