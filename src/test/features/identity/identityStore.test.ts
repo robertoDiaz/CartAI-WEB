@@ -14,6 +14,7 @@ vi.mock("../../../services/identityService", () => ({
     register: vi.fn(),
     uploadAvatar: vi.fn(),
     updateUser: vi.fn(),
+    refreshToken: vi.fn(),
   },
 }));
 
@@ -122,5 +123,30 @@ describe("useIdentityStore", () => {
     expect(updatedStore.isAuthenticated).toBe(false);
     expect(updatedStore.token).toBeNull();
     expect(updatedStore.user).toBeNull();
+  });
+
+  it("should successfully refresh token and update state", async () => {
+    useIdentityStore.setState({
+      user: { id: "user-id-123", email: "test@example.com", name: "Test User", roles: [] },
+      token: "old-token",
+      isAuthenticated: true,
+    });
+
+    const mockResponse = {
+      userId: "user-id-123",
+      token: "new-token",
+      email: "test@example.com",
+      name: "Test User",
+      roles: ["USER"],
+    };
+
+    vi.mocked(identityService.refreshToken).mockResolvedValueOnce(mockResponse);
+
+    const store = useIdentityStore.getState();
+    await store.refreshToken();
+
+    const updatedStore = useIdentityStore.getState();
+    expect(updatedStore.token).toBe("new-token");
+    expect(updatedStore.isAuthenticated).toBe(true);
   });
 });

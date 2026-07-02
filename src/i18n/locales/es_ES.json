@@ -80,6 +80,7 @@
     "createAccountLink": "crea una cuenta nueva",
     "emailLabel": "Correo Electrónico",
     "emailPlaceholder": "ejemplo@cartai.com",
+    "extendSession": "Ampliar sesión",
     "loginButton": "Iniciar Sesión",
     "loginError": "Error al iniciar sesión. Verifica tus credenciales.",
     "loginLink": "Inicia sesión aquí",
@@ -95,6 +96,8 @@
     "registerError": "Error al registrar la cuenta.",
     "registerLoading": "Creando cuenta...",
     "registerTitle": "Únete a Cart•AI",
+    "sessionExpired": "Tu sesión ha expirado. Por favor, inicia sesión de nuevo.",
+    "sessionWarning": "Tu sesión va a caducar en {{seconds}} segundos.",
     "updateProfileError": "Error al actualizar el perfil."
   },
   "catalog": {

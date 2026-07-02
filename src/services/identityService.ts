@@ -51,4 +51,9 @@ export const identityService = {
     const response = await apiClient.put<User>(`/api/users/${id}`, request);
     return response.data;
   },
+
+  refreshToken: async (): Promise<AuthRestResponse> => {
+    const response = await apiClient.post<AuthRestResponse>("/api/auth/refresh");
+    return response.data;
+  },
 };

@@ -34,7 +34,7 @@ export function useAlertLifecycle(
 
   // Handle auto-dismiss timeout
   useEffect(() => {
-    if (!trigger) return;
+    if (!trigger || duration <= 0 || duration === Infinity) return;
 
     const timer = setTimeout(() => {
       onDismissRef.current();
