@@ -80,6 +80,7 @@
     "createAccountLink": "create a new account",
     "emailLabel": "Email Address",
     "emailPlaceholder": "example@cartai.com",
+    "extendSession": "Extend Session",
     "loginButton": "Sign In",
     "loginError": "Login failed. Please check your credentials.",
     "loginLink": "Sign in here",
@@ -95,6 +96,8 @@
     "registerError": "Failed to create account.",
     "registerLoading": "Creating account...",
     "registerTitle": "Join Cart•AI",
+    "sessionExpired": "Your session has expired. Please log in again.",
+    "sessionWarning": "Your session will expire in {{seconds}} seconds.",
     "updateProfileError": "Failed to update profile."
   },
   "catalog": {

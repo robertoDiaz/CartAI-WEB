@@ -4,30 +4,25 @@
  */
 
 import { create } from "zustand";
-
-export interface ToastMessage {
-  id: string;
-  message: string;
-  type: "success" | "error" | "warning" | "info";
-}
-
-interface ToastState {
-  toasts: ToastMessage[];
-  addToast: (message: string, type: ToastMessage["type"]) => void;
-  removeToast: (id: string) => void;
-}
+import type { ToastState } from "./models";
 
 export const useToastStore = create<ToastState>((set) => ({
   toasts: [],
-  addToast: (message, type) => {
+  addToast: (message, type, duration, action) => {
     const id = Math.random().toString(36).substring(2, 9);
     set((state) => ({
-      toasts: [...state.toasts, { id, message, type }],
+      toasts: [...state.toasts, { id, message, type, duration, action }],
     }));
+    return id;
   },
   removeToast: (id) => {
     set((state) => ({
       toasts: state.toasts.filter((t) => t.id !== id),
+    }));
+  },
+  updateToast: (id, message) => {
+    set((state) => ({
+      toasts: state.toasts.map((t) => (t.id === id ? { ...t, message } : t)),
     }));
   },
 }));

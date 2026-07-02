@@ -138,6 +138,33 @@ export const useIdentityStore = create<IdentityState>()(
       },
 
       clearError: () => set({ error: null }),
+
+      refreshToken: async () => {
+        set({ isLoading: true, error: null });
+        try {
+          const response = await identityService.refreshToken();
+          set({
+            user: {
+              id: response.userId,
+              email: response.email,
+              name: response.name,
+              roles: response.roles || [],
+              avatarFileId: response.avatarFileId,
+              phone: response.phone,
+              taxId: response.taxId,
+              preferredLanguage: response.preferredLanguage,
+            },
+            token: response.token,
+            isAuthenticated: true,
+            isLoading: false,
+          });
+        } catch (error: any) {
+          const message = error.response?.data?.message || i18n.t("auth.sessionExpired");
+          set({ error: message, isLoading: false, user: null, token: null, isAuthenticated: false });
+          useToastStore.getState().addToast(message, "error");
+          throw error;
+        }
+      },
     }),
     {
       name: "identity-storage", // This is the key used in localStorage

@@ -17,4 +17,5 @@ export interface IdentityState {
   uploadAvatar: (userId: string, file: File) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  refreshToken: () => Promise<void>;
 }

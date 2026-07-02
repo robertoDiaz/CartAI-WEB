@@ -8,6 +8,7 @@ import { router } from "./routes";
 import { ToastContainer } from "./components/ui/ToastContainer";
 import { useSystemErrorStore } from "./services/systemErrorStore";
 import { SystemErrorScreen } from "./components/layout/SystemErrorScreen";
+import { SessionTimeoutWatcher } from "./components/layout/SessionTimeoutWatcher";
 
 function App() {
   const hasSystemError = useSystemErrorStore((state) => state.hasSystemError);
@@ -20,6 +21,7 @@ function App() {
     <>
       <RouterProvider router={router} />
       <ToastContainer />
+      <SessionTimeoutWatcher />
     </>
   );
 }
