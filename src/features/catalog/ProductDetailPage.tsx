@@ -38,7 +38,7 @@ export function ProductDetailPage() {
         <div className="flex-grow lg:w-2/3">
           <Link to="/catalog" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-800 mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            {translate("catalog.backToCatalog", "Volver al catálogo")}
+            {translate("catalog.backToCatalog")}
           </Link>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">

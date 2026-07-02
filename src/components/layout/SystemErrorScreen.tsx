@@ -63,15 +63,12 @@ export function SystemErrorScreen() {
 
         {/* Title */}
         <h1 className="text-2xl font-bold text-white tracking-tight mb-3">
-          {translate("system.errorTitle", "Servidor no disponible")}
+          {translate("system.errorTitle")}
         </h1>
 
         {/* Description */}
         <p className="text-slate-400 text-sm leading-relaxed mb-8">
-          {translate(
-            "system.errorDescription",
-            "No hemos podido establecer conexión con el servidor de Cart•AI. Por favor, comprueba tu conexión a internet o inténtalo de nuevo en unos minutos."
-          )}
+          {translate("system.errorDescription")}
         </p>
 
         {/* Retry button */}
@@ -82,7 +79,7 @@ export function SystemErrorScreen() {
           className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-semibold shadow-lg hover:shadow-xl hover:shadow-white/5 active:scale-98 transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
         >
           <RefreshCw size={18} className={`stroke-[2.5] ${isRetrying ? "animate-spin" : ""}`} />
-          {translate("system.errorRetry", "Reintentar conexión")}
+          {translate("system.errorRetry")}
         </button>
       </div>
     </div>

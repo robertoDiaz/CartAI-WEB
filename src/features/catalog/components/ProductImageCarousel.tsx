@@ -84,7 +84,7 @@ export function ProductImageCarousel({ imageFileIds, alt }: { imageFileIds?: str
           type="button"
           onClick={() => setIsZoomOpen(true)}
           className="absolute bottom-4 right-4 p-3 rounded-full bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md border border-slate-100/50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer z-10 flex items-center justify-center hover:shadow-lg md:opacity-0 md:group-hover:opacity-100 focus:opacity-100"
-          title={translate("catalog.zoomImage", "Ampliar imagen")}
+          title={translate("catalog.zoomImage")}
         >
           <ZoomIn size={20} className="stroke-[2.5]" />
         </button>
@@ -125,7 +125,7 @@ export function ProductImageCarousel({ imageFileIds, alt }: { imageFileIds?: str
               type="button"
               onClick={() => setIsZoomOpen(false)}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-all duration-200 cursor-pointer"
-              title={translate("catalog.close", "Cerrar")}
+              title={translate("catalog.close")}
             >
               <X size={20} />
             </button>
@@ -139,7 +139,7 @@ export function ProductImageCarousel({ imageFileIds, alt }: { imageFileIds?: str
                   onClick={handlePrev}
                   disabled={!mainApi?.canScrollPrev()}
                   className="absolute left-0 p-3 rounded-full bg-slate-100/80 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 transition-all transform hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none cursor-pointer z-10 flex items-center justify-center shadow-sm border border-slate-200/30"
-                  title={translate("catalog.previous", "Anterior")}
+                  title={translate("catalog.previous")}
                 >
                   <ChevronLeft size={24} />
                 </button>
@@ -162,7 +162,7 @@ export function ProductImageCarousel({ imageFileIds, alt }: { imageFileIds?: str
                   onClick={handleNext}
                   disabled={!mainApi?.canScrollNext()}
                   className="absolute right-0 p-3 rounded-full bg-slate-100/80 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 transition-all transform hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none cursor-pointer z-10 flex items-center justify-center shadow-sm border border-slate-200/30"
-                  title={translate("catalog.next", "Siguiente")}
+                  title={translate("catalog.next")}
                 >
                   <ChevronRight size={24} />
                 </button>
