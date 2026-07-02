@@ -11,7 +11,12 @@ import { useSystemErrorStore } from "../../services/systemErrorStore";
 // Mock i18next
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
-    t: (_key: string, defaultValue: string) => defaultValue,
+    t: (key: string) => {
+      if (key === "system.errorTitle") return "Servidor no disponible";
+      if (key === "system.errorDescription") return "No hemos podido establecer conexión con el servidor de Cart•AI. Por favor, comprueba tu conexión a internet o inténtalo de nuevo en unos minutos.";
+      if (key === "system.errorRetry") return "Reintentar conexión";
+      return key;
+    },
   }),
 }));
 
