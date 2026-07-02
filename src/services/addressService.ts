@@ -3,8 +3,8 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import type { Address, AddressRestRequest } from "../../domain/addressModels";
-import { apiClient } from "../../services/apiClient";
+import type { Address, AddressRestRequest } from "../domain/addressModels";
+import { apiClient } from "./apiClient";
 
 export const addressService = {
   getUserAddresses: async (userId: string): Promise<Address[]> => {

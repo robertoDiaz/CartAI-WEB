@@ -6,7 +6,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useToastStore } from "../../../components/ui/useToastStore";
-import { addressService } from "../addressService";
+import { addressService } from "../../../services/addressService";
 import type { Address, AddressRestRequest } from "../../../domain/addressModels";
 
 export interface AddressFormProps {

@@ -3,63 +3,54 @@
  * Licensed under the GNU General Public License v3.0. See LICENSE for details.
  */
 
-import type { Product } from "../domain/shopModels";
-
-const MOCK_PRODUCTS: Product[] = [
-  {
-    id: "prod-1",
-    name: "Cart•AI Smart Terminal",
-    description:
-      "Terminal inteligente de punto de venta con recomendaciones por IA en tiempo real y pantalla táctil HD.",
-    price: 299.99,
-    stock: 5,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-2",
-    name: "Predictive Stock Tracker",
-    description:
-      "Sensor IoT ultrapreciso para estanterías que predice la rotura de stock y automatiza pedidos.",
-    price: 149.5,
-    stock: 3,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-3",
-    name: "Automated Cart Tag",
-    description:
-      "Etiqueta digital inteligente de tinta electrónica para carritos de compra que sincroniza precios dinámicos.",
-    price: 19.99,
-    stock: 15,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-4",
-    name: "Hexagonal Hub Gateway",
-    description:
-      "Servidor de comunicación local con arquitectura hexagonal redundante y encriptación de grado militar.",
-    price: 599.0,
-    stock: 2,
-    imageFileIds: [],
-  },
-  {
-    id: "prod-5",
-    name: "Hexagonal Hub Gateway 2",
-    description:
-      "Servidor de comunicación remoto con arquitectura hexagonal redundante y encriptación de grado militar.",
-    price: 1000.0,
-    stock: 0,
-    imageFileIds: [],
-  },
-];
+import type { Product, CreateProductRequest, UpdateProductRequest } from "../domain/shopModels";
+import { apiClient } from "./apiClient";
 
 export const productService = {
   getProducts: async (): Promise<Product[]> => {
-    // Simulamos un retraso de red de 400ms para emular una API real
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(MOCK_PRODUCTS);
-      }, 400);
-    });
+    const response = await apiClient.get<Product[]>("/api/products");
+    return response.data;
   },
+
+  getProductById: async (id: string): Promise<Product> => {
+    const response = await apiClient.get<Product>(`/api/products/${id}`);
+    return response.data;
+  },
+
+  createProduct: async (request: CreateProductRequest): Promise<Product> => {
+    const response = await apiClient.post<Product>("/api/products", request);
+    return response.data;
+  },
+
+  updateProduct: async (request: UpdateProductRequest): Promise<Product> => {
+    const response = await apiClient.put<Product>("/api/products", request);
+    return response.data;
+  },
+
+  deleteProduct: async (id: string): Promise<Product> => {
+    const response = await apiClient.delete<Product>(`/api/products/${id}`);
+    return response.data;
+  },
+
+  uploadImage: async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const token = JSON.parse(localStorage.getItem("identity-storage") || "{}")?.state?.token;
+    
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"}/api/storage/upload`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to upload image");
+    }
+    
+    const data = await response.json();
+    return data.id;
+  }
 };

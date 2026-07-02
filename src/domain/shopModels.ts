@@ -16,3 +16,20 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export interface CreateProductRequest {
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageFileIds: string[];
+}
+
+export interface UpdateProductRequest {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageFileIds: string[];
+}
